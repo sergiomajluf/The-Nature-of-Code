@@ -604,99 +604,99 @@ void draw() {
 </section>
 
 <section data-type="sect1" id="intro_section5">
-<h2>I.5 A Custom Distribution of Random Numbers</h2>
+<h2>I.5 Distribución personalizada de números aleatorios</h2>
 
 <a data-primary="distributions" data-secondary="custom" data-type="indexterm"></a> <a data-primary="Lévy flight" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="custom" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="custom" data-type="indexterm"></a> <a data-primary="oversampling" data-type="indexterm"></a> <a data-primary="random number generators" data-secondary="custom distributions" data-tertiary="creating" data-type="indexterm"></a> <a data-primary="random walks" data-secondary="Lévy flight" data-type="indexterm"></a> <a data-primary="random walks" data-secondary="oversampling" data-type="indexterm"></a>
 
-<p>There will come a time in your life when you do not want a uniform distribution of random values, or a Gaussian one. Let’s imagine for a moment that you are a random walker in search of food. Moving randomly around a space seems like a reasonable strategy for finding something to eat. After all, you don’t know where the food is, so you might as well search randomly until you find it. The problem, as you may have noticed, is that random walkers return to previously visited locations many times (this is known as “oversampling”). One strategy to avoid such a problem is to, every so often, take a very large step. This allows the walker to forage randomly around a specific location while periodically jumping very far away to reduce the amount of oversampling. This variation on the random walk (known as a L&eacute;vy flight) requires a custom set of probabilities. Though not an exact implementation of a L&eacute;vy flight, we could state the probability distribution as follows: the longer the step, the less likely it is to be picked; the shorter the step, the more likely.</p>
+<p>Llegará algún momento en tu vida cuando no quieras una distribución de valores aleatorios, o una Guassiana. Imaginemos por un momento que tu eres un caminante aleatorio en busca de comida. Moverse aleatoriamente alrededor del espacio parece una estrategia razonable para encontrar algo para comer. Despúes de todo, tu no sabes donde está la comida, entonces podrías buscar aleatoriamente hasta encontrarlo. El problema, como ya habrás notado, es que el caminante aleatorio regresa a lugares visitados anteriormente muchas veces (esto es conocido como "sobremuestreo"). Una estrategia para evitar un problema como este, es que de vez en cuando, tome un paso más largo. Esto permite al caminante buscar aleatoriamente alrededor de una posición especifica mientas salta periodicamente muy lejos para reducir la cantidad de sobremuestre. Esta variación en la caminata aleatoria (conocida como vuelo de Lévy) requiere un conjunto personalizado de probabilidades. Aunque no es una implementación exacta del vuelo de Lévy, podemos declarar el estado de la distribución personalizada como el siguiente: mientras más largo el paso, menos posibilidades de ser elegido y mientras más corto el paso, mas posibilidades  de ser elegido.</p>
 
-<p>Earlier in this prologue, we saw that we could generate custom probability distributions by filling an array with values (some duplicated so that they would be picked more frequently) or by testing the result of <span class="function">random()</span>. We could implement a L&eacute;vy flight by saying that there is a 1% chance of the walker taking a large step.</p>
+<p>Anteriormente en el prólogo, vimos que podíamos generar una probabilidad de distribución personalizada llenando una lista con valores(algunos duplicados paraque puedan ser elegidos más frecuentemente) o probando el resultado <span class="function">random()</span>. Podemos implementar el vuelo de Lévy diciendo que hay 1% de probabilidad de que el caminante de un paso largo.</p>
 
 <a data-primary="arrays" data-secondary="Lévy flights" data-tertiary="implementing with" data-type="indexterm"></a> <a data-primary="Lévy flight" data-secondary="implementing with arrays" data-type="indexterm"></a>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 float r = random(1);
-//{$3} A 1% chance of taking a large step
+//{$3} 1% de probabilidad de tomar un paso largo
 if (r &lt; 0.01) {
-  xstep = random(-100, 100);
-  ystep = random(-100, 100);
+  xpaso = random(-100, 100);
+  ypaso = random(-100, 100);
 } else {
-  xstep = random(-1, 1);
-  ystep = random(-1, 1);
+  xpaso = random(-1, 1);
+  ypaso = random(-1, 1);
 }</pre>
 
 <a data-primary="Lévy flight" data-secondary="implementing with qualifying random values" data-type="indexterm"></a>
 
-<p>However, this reduces the probabilities to a fixed number of options. What if we wanted to make a more general rule—the higher a number, the more likely it is to be picked? 3.145 would be more likely to be picked than 3.144, even if that likelihood is just a tiny bit greater. In other words, if <span class="var">x</span> is the random number, we could map the likelihood on the y-axis with <span class="var">y</span> = <span class="var">x</span>.</p>
+<p>Sin embargo, esto reduce las probabilidades a un número fijo de opciones. ¿Y si queremos hacer una regla más general — mientras más grande el número, mayor opción de ser elegido? 3.145 tendría mas opciones de ser elegido que 3.144, incluso si esa probabilidad es solo un poquito más grande. en otras palabras, si <span class="var">x</span> es el número aleatorio, podríamos mapear la probabilidad en el eje y con <span class="var">y</span> = <span class="var">x</span>.</p>
 
 <figure id="intro_figure4"><img alt="Figure I.4" src="intro/intro_04.png" />
-<figcaption>Figure I.4</figcaption>
+<figcaption>Figura I.4</figcaption>
 </figure>
 
-<p>If we can figure out how to generate a distribution of random numbers according to the above graph, then we will be able to apply the same methodology to any curve for which we have a formula.</p>
+<p>Si pudiéramos averiguar como generar una distrubución  de números aleatorios de acuerdo al gráfico de arriba, podríamos aplicar la misma metodología a cualquier curva en la cual tengamos una fórmula.</p>
 
 <a data-primary="non-uniform distributions" data-secondary="qualifying random values" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="qualifying random values" data-type="indexterm"></a> <a data-primary="qualifying random values" data-type="indexterm"></a>
 
-<p>One solution is to pick two random numbers instead of one. The first random number is just that, a random number. The second one, however, is what we’ll call a “qualifying random value.” It will tell us whether to use the first one or throw it away and pick another one. Numbers that have an easier time qualifying will be picked more often, and numbers that rarely qualify will be picked infrequently. Here are the steps (for now, let’s consider only random values between 0 and 1):</p>
+<p>Una solución es elegir dos números aleatorios en vez de uno. El primer número aleatorio es solo eso, un número aleatorio. El segundo, sin embargo, es lo que llamaríamos un "valor aleatorio que califica". Nos dirá si debemos utilizar el primero o desecharlo y elegir otro. Los números que tienen facilidad en calificar serán elegidos más a menudo, y los números que raramente califican serán elegidos con menor frecuencia. Acá están los pasos (por ahora, considera solo valores aleatorios entre 0 y 1):</p>
 
 <ol>
 	<li>
-	<p>Pick a random number: R1</p>
+	<p>Elige un número aleatorio: R1</p>
 	</li>
 	<li>
-	<p>Compute a probability P that R1 should qualify. Let’s try: P = R1.</p>
+	<p>Calcula una probabilidad P donde R1 debería calificar. Intentemos: P = R1.</p>
 	</li>
 	<li>
-	<p>Pick another random number: R2</p>
+	<p>Elige otro número aleatorio: R2</p>
 	</li>
 	<li>
-	<p>If R2 is less than P, then we have found our number—R1!</p>
+	<p>Si R2 es menor que P, encontramos nuestro numero—R1!</p>
 	</li>
 	<li>
-	<p>If R2 is not less than P, go back to step 1 and start over.</p>
+	<p>Si R2 no es menor que P, vulve al paso 1 y comienza de nuevo.</p>
 	</li>
 </ol>
 
-<p>Here we are saying that the likelihood that a random value will qualify is equal to the random number itself. Let’s say we pick 0.1 for R1. This means that R1 will have a 10% chance of qualifying. If we pick 0.83 for R1 then it will have a 83% chance of qualifying. The higher the number, the greater the likelihood that we will actually use it.</p>
+<p>Acá estamos diciendo que la probabilidad que un valor aleatorio califique es igual al número aleatorio en si mismo. Digamos que elegimos 0.1 para R1. Esto significa que R1 tendrá 10% de probabilidad de calificar. Si elegimos 0.83 para R1 entonces este tendrá 83% de probabilidad para calificar. Mientras mayor sea el número, mayor es la probabilidad de que realmente se use.</p>
 
 <a data-primary="Monte Carlo method" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="Monte Carlo method" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="Monte Carlo method" data-type="indexterm"></a> <a data-primary="qualifying random values" data-secondary="Monte Carlo method" data-type="indexterm"></a>
 
-Here is a function (named for the accept-reject algorithm, a type ofMonte Carlo method, which was named for the Monte Carlo casino) that implements the above algorithm, returning a random value between 0 and 1.
+Acá hay una función (llamada por el método de Monte Carlo, la cual fue llamada por el casino de Monte Carlo) que implementa el algoritmo de arriba, resultando un valor aleatorio entre 0 y 1.
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-float acceptreject() {
-  // We do this “forever” until we find a qualifying random value.
+float montecarlo() {
+  // Hacemos esto "por siempre" hasta que encontremos un valor calificable
   while (true) {
-    // Pick a random value.
+    // Elige un valor aleatorio
     float r1 = random(1);
-    // Assign a probability.
-    float probability = r1;
-    // Pick a second random value.
+    // Asigna una probabilidad
+    float probabilidad = r1;
+    // Elige otro valor
     float r2 = random(1);
 
-    //{!3} Does it qualify?  If so, we’re done!
-    if (r2 &lt; probability) {
+    //{!3} ¿Califica? Si lo hace, estamos listos!
+    if (r2 &lt; probabilidad) {
       return r1;
     }
   }
 }</pre>
 
 <div data-type="exercise" id="intro_exercise6">
-<h5>Exercise I.6</h5>
+<h5>Ejercicio I.6</h5>
 
-<p>Use a custom probability distribution to vary the size of a step taken by the random walker. The step size can be determined by influencing the range of values picked. Can you map the probability exponentially—i.e. making the likelihood that a value is picked equal to the value squared?</p>
+<p>Usa una probabilidad de distribución personalizada para variar el tamaño de un paso dado por el caminante aleatorio. Este tamaño del paso puede ser determinado influenciando el rango de los valores elegidos. ¿Puedes mapear la probabilidad exponencialmente—p.ej. hacer que la probabilidad que un valor sea elegido es igual al valor al cuadrado?</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  //{!1} A uniform distribution of step sizes. Change this!
-  float stepsize = random(0, 10);
+  //{!1} Distribución uniforme del tamaño de pasos. ¡Modifícalo!
+  float tam_paso = random(0, 10);
 
-  float stepx = random(-stepsize, stepsize);
-  float stepy = random(-stepsize, stepsize);
+  float pasox = random(-stepsize, stepsize);
+  float pasoy = random(-stepsize, stepsize);
 
-  x += stepx;
-  y += stepy;</pre>
+  x += pasox;
+  y += pasoy;</pre>
 
-<p>(Later we’ll see how to do this more efficiently using vectors.)</p>
+<p>(Más tarde veremos como hacerlo más eficiente usando vectores.)</p>
 </div>
 </section>
 
