@@ -1,149 +1,150 @@
 <section data-type="introduction" id="_introduction">
-<h1>Introduction</h1>
+<h1>Introducción</h1>
 
 <blockquote data-type="epigraph">
-<p>“I am two with nature.”</p>
+<p>“Soy dos con la naturaleza.”</p>
 
 <p data-type="attribution">— Woody Allen</p>
 </blockquote>
 
-<p>Here we are: the beginning. Well, almost the beginning. If it’s been a while since you’ve done any programming in Processing (or any math, for that matter), this introduction will get your mind back into computational thinking before we approach some of the more difficult and complex material.</p>
+<p>Nos encontramos aquí: en el inicio. Bueno, casi en el inicio. Si ha pasado un tiempo desde que has escrito cualquier tipo de programación en Processing (o cualquier tipo de matemáticas), esta introducción llevará tu mente de regreso hacia el pensamiento computacional antes de que nos acerquemos a materiales más difíciles y complejos.</p>
 
-<p>In Chapter 1, we’re going to talk about the concept of a vector and how it will serve as the building block for simulating motion throughout this book. But before we take that step, let’s think about what it means for something to simply move around the screen. Let’s begin with one of the best-known and simplest simulations of motion—the random walk.</p>
+<p>En el Capítulo 1, vamos a hablar acerca del concepto de un vector y cómo nos puede servir de manera de un building block para la simulación de movimiento a lo largo del libro. Pero antes de que demos ese paso, pensemos lo que significa que algo simplemente se mueva por la pantalla. Comencemos con uno de las simulaciones de moviemiento más conocidas — El caminante aleatorio.</p>
 
 <section data-type="sect1" id="intro_section1">
-<h2>I.1 Random Walks</h2>
+<h2>I.1 Caminata Aleatoria</h2>
 
 <a data-primary="random walks" data-type="indexterm"></a>
 
-<p>Imagine you are standing in the middle of a balance beam. Every ten seconds, you flip a coin. Heads, take a step forward. Tails, take a step backward. This is a random walk—a path defined as a series of random steps. Stepping off that balance beam and onto the floor, you could perform a random walk in two dimensions by flipping that same coin twice with the following results:</p>
+<p>Imagina que estás de pie en medio de una barra de equilibrio. Cada diez segundos lanzas una moneda al aire. Cara, das un paso hacia adelante. Sello, das un paso hacia atrás. Esto define una caminata aleatoria —un camino definido por una serie de pasos aleatorios. Llevando la barra de equilibrio hacia el suelo, podrías realizar un paseo aleatorio en dos dimensiones, lanzando la moneda dos veces con los siguients resultados:</p>
 
 <table>
 	<thead>
 		<tr>
-			<th>Flip 1</th>
-			<th>Flip 2</th>
-			<th>Result</th>
+			<th>Lanzamiento  1</th>
+			<th>Lanzamiento  2</th>
+			<th>Resultado</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>
-			<p>Heads</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Heads</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Step forward.</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Heads</p>
-			</td>
-			<td>
-			<p>Tails</p>
-			</td>
-			<td>
-			<p>Step right.</p>
+			<p>Paso hacia adelante.</p>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<p>Tails</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Heads</p>
+			<p>Sello</p>
 			</td>
 			<td>
-			<p>Step left.</p>
+			<p>Paso hacia la derecha.</p>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<p>Tails</p>
+			<p>Sello</p>
 			</td>
 			<td>
-			<p>Tails</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Step backward.</p>
+			<p>Paso hacia la izquierda.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Sello</p>
+			</td>
+			<td>
+			<p>Sello</p>
+			</td>
+			<td>
+			<p>Paso hacia atrás.</p>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Yes, this may seem like a particularly unsophisticated algorithm. Nevertheless, random walks can be used to model phenomena that occur in the real world, from the movements of molecules in a gas to the behavior of a gambler spending a day at the casino. As for us, we begin this book studying a random walk with three goals in mind.</p>
+<p>Pareciera que es particularmente un algoritmo poco sofisticado. Sin embargo, las caminata aleatorias pueden ser usadas para modelar fenómenos que ocurren en el mundo real, desde el movimiento de moléculas en un gas, hasta el comportamiento de un apostador a lo largo de un día en el casino. En cuanto a nosotros, empezaremos este libro estudiando un paseo aleatorio con tres metas en mente.</p>
 
 <a data-primary="natural phenomena" data-secondary="modeling with random walks" data-type="indexterm"></a>
 
 <ol>
 	<li>
-	<p>We need to review a programming concept central to this book—object-oriented programming. The random walker will serve as a template for how we will use object-oriented design to make things that move around a Processing window.</p>
+	<p>Necesitamos repasar un concepto de programación central —Programación Orientada a Objetos. El caminante aleatorio nos servirá como modelo para que el diseño orientado a objetos que usemos haga que cosas se muevan dentro de la ventana de Processing.</p>
 	</li>
 	<li>
-	<p>The random walk instigates the two questions that we will ask over and over again throughout this book: “How do we define the rules that govern the behavior of our objects?” and then, “How do we implement these rules in Processing?”</p>
+	<p>La caminata aleatoria induce las dos preguntas que nos haremos a través de todo este libro: "¿Cómo definimos las reglas que gobiernan el comportamiento de nuestros objetos?" y luego "¿Cómo implementamos estas reglas en Processing?"</p>
 	</li>
 	<li>
-	<p>Throughout the book, we’ll periodically need a basic understanding of randomness, probability, and Perlin noise. The random walk will allow us to demonstrate a few key points that will come in handy later.</p>
+	<p>A través del libro, periódicamente necesitaremos un entendimiendo básico de aleatoriedad, probabilidad y Perlin Noise. La caminata aleatoria nos permitirá demostrar algunos puntos importantes que nos serán útiles más adelante.</p>
 	</li>
 </ol>
 </section>
 
 <section data-type="sect1" id="intro_section2">
-<h2>I.2 The Random Walker Class</h2>
+<h2>I.2 La Clase del Caminante Aleatorio</h2>
+<p><em>En Processing se escribe 'class' pero usaremos la palabra clase.</em></p>
 
 <a data-primary="object-oriented programming" data-secondary="review of" data-type="indexterm"></a> <a data-primary="Processing" data-secondary="review of object-oriented programming with" data-type="indexterm"></a>
 
-<p>Let’s review a bit of object-oriented programming (OOP) first by building a <span class="klass">Walker</span> object. This will be only a cursory review. If you have never worked with OOP before, you may want something more comprehensive; I’d suggest stopping here and reviewing the <a href="http://processing.org/learning/objects/">basics on the Processing website</a> before continuing.</p>
+<p>Repasemos un poco la programación orientada a objetos (POO) primero, construyendo un objeto <span class="klass">Caminante</span>. Esta será solamente un revisión superficial. Si nunca has trabajado con POO antes, y tal vez quieras algo más comprensible; Te sugiero detenerte aquí y revisar <a href="http://processing.org/learning/objects/">los conceptos básicos de Processing</a> en el sitio web antes de continuar.</p>
 
 <a data-primary="object" data-secondary="defined" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="object" data-type="indexterm"></a>
 
-<p>An <strong><em>object</em></strong> in Processing is an entity that has both data and functionality. We are looking to design a <span class="klass">Walker</span> object that both keeps track of its data (where it exists on the screen) and has the capability to perform certain actions (such as draw itself or take a step).</p>
+<p>Un <strong><em>objecto</em></strong> en Processing es una entidad que tiene datos y funcionalidad. Estamos tratando de diseñar un objeto <span class="klass">Caminante</span> que a la vez que lleva el seguimiento de sus propios datos (donde existe en la pantalla) y tiene la capacidad de realizar ciertas acciones (así como dibujarse a sí mismo o dar un paso).</p>
 
 <a data-primary="class (Processing)" data-secondary="defined" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="class" data-type="indexterm"></a>
 
-<p>A <strong><em>class</em></strong> is the template for building actual instances of objects. Think of a class as the cookie cutter; the objects are the cookies themselves.</p>
+<p>Una <strong><em>class</em></strong> es la plantilla para construir casos reales de objetos. Piensa en una classe como el cortador de galletas: los objetos son las galletas en sí.</p>
 
-<p>Let’s begin by defining the <span class="klass">Walker</span> class—what it means to be a <span class="klass">Walker</span> object. The <span class="klass">Walker</span> only needs two pieces of data—a number for its x-location and one for its y-location.</p>
+<p>Comenzemos por definir la clase <span class="klass">Caminante</span> lo que significa ser un objeto <span class="klass">Caminante</span>. El <span class="klass">Caminante</span> sólo necesita dos piezas de datos —un número para su posición en x y uno para su posición en y.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-class Walker {
-  // Objects have data.
+class Caminante {
+  // Objetos tienen datos.
   int x;
   int y;</pre>
 
 <a data-primary="class (Processing)" data-secondary="constructor" data-type="indexterm"></a> <a data-primary="constructor" data-type="indexterm"></a>
 
-<p>Every class must have a constructor, a special function that is called when the object is first created. You can think of it as the object’s <span class="function">setup()</span>. There, we’ll initialize the <span class="klass">Walker</span><code>’</code>s starting location (in this case, the center of the window).</p>
+<p>Cada clase debe tener un constructor, una función especial que es llamada cuando el objeto se crea por primera vez. Puedes pensarla como el <span class="function">setup()</span>del objeto. Ahí, inicializaremos la posición inicial del <span class="klass">Caminante</span><code>’</code> (en este caso, el centro de la pantalla).</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  //Objects have a constructor where they are initialized.
-  Walker() {
+  //Objetos tienen un constructor en donde son inicializados.
+  Caminante() {
     x = width/2;
     y = height/2;
   }</pre>
 
 <a data-primary="class (Processing)" data-secondary="functionality" data-type="indexterm"></a> <a data-primary="functionality" data-type="indexterm"></a>
 
-<p>Finally, in addition to data, classes can be defined with functionality. In this example, a <span class="klass">Walker</span> has two functions. We first write a function that allows the object to display itself (as a black dot).</p>
+<p>Finalmente, además de los datos, las clases pueden ser definidas con funcionalidad. En este ejemplo, un <span class="klass">Caminante</span> tiene dos funciones. Primero escribiremos una función que permita al objeto mostraste a sí mismo (como un punto blanco).</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  // Objects have functions.
-  void display() {
+  // Objetos tienen funciones.	
+  void mostrar() {
     stroke(0);
     point(x,y);
   }</pre>
 
-<p>The second function directs the <span class="klass">Walker</span> object to take a step. Now, this is where things get a bit more interesting. Remember that floor on which we were taking random steps? Well, now we can use a Processing window in that same capacity. There are four possible steps. A step to the right can be simulated by incrementing <span class="var">x</span> (<span class="var">x</span><code>++</code>); to the left by decrementing <span class="var">x</span> (<span class="var">x--</span>); forward by going down a pixel (<span class="var">y++</span>); and backward by going up a pixel (<span class="var">y--</span>). How do we pick from these four choices? Earlier we stated that we could flip two coins. In Processing, however, when we want to randomly choose from a list of options, we can pick a random number using <span class="function">random()</span>.</p>
+<p>La segunda función dirige al objeto <span class="klass">Walker</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un pixel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un pixel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aleatoriamente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
 
 <a data-primary="random number generators" data-secondary="random() function" data-type="indexterm"></a> <a data-primary="random() function" data-type="indexterm"></a>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  void step() {
+  void paso() {
     // 0, 1, 2, or 3
-    int choice = int(random(4));</pre>
+    int alternativa = int(random(4));</pre>
 
 <p>The above line of code picks a random floating point number between 0 and 4 and converts it to an integer, with a result of 0, 1, 2, or 3. Technically speaking, the highest number will never be 4.0, but rather 3.999999999 (with as many 9s as there are decimal places); since the process of converting to an integer lops off the decimal place, the highest <span class="var">int</span> we can get is 3. Next, we take the appropriate step (left, right, up, or down) depending on which random number was picked.</p>
 
