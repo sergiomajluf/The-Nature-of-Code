@@ -1,159 +1,160 @@
 <section data-type="introduction" id="_introduction">
-<h1>Introduction</h1>
+<h1>Introducción</h1>
 
 <blockquote data-type="epigraph">
-<p>“I am two with nature.”</p>
+<p>“Soy dos con la naturaleza.”</p>
 
 <p data-type="attribution">— Woody Allen</p>
 </blockquote>
 
-<p>Here we are: the beginning. Well, almost the beginning. If it’s been a while since you’ve done any programming in Processing (or any math, for that matter), this introduction will get your mind back into computational thinking before we approach some of the more difficult and complex material.</p>
+<p>Nos encontramos aquí: en el inicio. Bueno, casi en el inicio. Si ha pasado un tiempo desde que has escrito cualquier tipo de programación en Processing (o cualquier tipo de matemáticas), esta introducción llevará tu mente de regreso hacia el pensamiento computacional antes de que nos acerquemos a materiales más difíciles y complejos.</p>
 
-<p>In Chapter 1, we’re going to talk about the concept of a vector and how it will serve as the building block for simulating motion throughout this book. But before we take that step, let’s think about what it means for something to simply move around the screen. Let’s begin with one of the best-known and simplest simulations of motion—the random walk.</p>
+<p>En el Capítulo 1, vamos a hablar acerca del concepto de un vector y cómo nos puede servir de manera de un building block para la simulación de movimiento a lo largo del libro. Pero antes de que demos ese paso, pensemos lo que significa que algo simplemente se mueva por la pantalla. Comencemos con uno de las simulaciones de moviemiento más conocidas — El caminante aleatorio.</p>
 
 <section data-type="sect1" id="intro_section1">
-<h2>I.1 Random Walks</h2>
+<h2>I.1 Caminata Aleatoria</h2>
 
 <a data-primary="random walks" data-type="indexterm"></a>
 
-<p>Imagine you are standing in the middle of a balance beam. Every ten seconds, you flip a coin. Heads, take a step forward. Tails, take a step backward. This is a random walk—a path defined as a series of random steps. Stepping off that balance beam and onto the floor, you could perform a random walk in two dimensions by flipping that same coin twice with the following results:</p>
+<p>Imagina que estás de pie en medio de una barra de equilibrio. Cada diez segundos lanzas una moneda al aire. Cara, das un paso hacia adelante. Sello, das un paso hacia atrás. Esto define una caminata aleatoria —un camino definido por una serie de pasos aleatorios. Llevando la barra de equilibrio hacia el suelo, podrías realizar un paseo aleatorio en dos dimensiones, lanzando la moneda dos veces con los siguients resultados:</p>
 
 <table>
 	<thead>
 		<tr>
-			<th>Flip 1</th>
-			<th>Flip 2</th>
-			<th>Result</th>
+			<th>Lanzamiento  1</th>
+			<th>Lanzamiento  2</th>
+			<th>Resultado</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>
-			<p>Heads</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Heads</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Step forward.</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<p>Heads</p>
-			</td>
-			<td>
-			<p>Tails</p>
-			</td>
-			<td>
-			<p>Step right.</p>
+			<p>Paso hacia adelante.</p>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<p>Tails</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Heads</p>
+			<p>Sello</p>
 			</td>
 			<td>
-			<p>Step left.</p>
+			<p>Paso hacia la derecha.</p>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<p>Tails</p>
+			<p>Sello</p>
 			</td>
 			<td>
-			<p>Tails</p>
+			<p>Cara</p>
 			</td>
 			<td>
-			<p>Step backward.</p>
+			<p>Paso hacia la izquierda.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Sello</p>
+			</td>
+			<td>
+			<p>Sello</p>
+			</td>
+			<td>
+			<p>Paso hacia atrás.</p>
 			</td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Yes, this may seem like a particularly unsophisticated algorithm. Nevertheless, random walks can be used to model phenomena that occur in the real world, from the movements of molecules in a gas to the behavior of a gambler spending a day at the casino. As for us, we begin this book studying a random walk with three goals in mind.</p>
+<p>Pareciera que es particularmente un algoritmo poco sofisticado. Sin embargo, las caminata aleatorias pueden ser usadas para modelar fenómenos que ocurren en el mundo real, desde el movimiento de moléculas en un gas, hasta el comportamiento de un apostador a lo largo de un día en el casino. En cuanto a nosotros, empezaremos este libro estudiando un paseo aleatorio con tres metas en mente.</p>
 
 <a data-primary="natural phenomena" data-secondary="modeling with random walks" data-type="indexterm"></a>
 
 <ol>
 	<li>
-	<p>We need to review a programming concept central to this book—object-oriented programming. The random walker will serve as a template for how we will use object-oriented design to make things that move around a Processing window.</p>
+	<p>Necesitamos repasar un concepto de programación central —Programación Orientada a Objetos. El caminante aleatorio nos servirá como modelo para que el diseño orientado a objetos que usemos haga que cosas se muevan dentro de la ventana de Processing.</p>
 	</li>
 	<li>
-	<p>The random walk instigates the two questions that we will ask over and over again throughout this book: “How do we define the rules that govern the behavior of our objects?” and then, “How do we implement these rules in Processing?”</p>
+	<p>La caminata aleatoria induce las dos preguntas que nos haremos a través de todo este libro: "¿Cómo definimos las reglas que gobiernan el comportamiento de nuestros objetos?" y luego "¿Cómo implementamos estas reglas en Processing?"</p>
 	</li>
 	<li>
-	<p>Throughout the book, we’ll periodically need a basic understanding of randomness, probability, and Perlin noise. The random walk will allow us to demonstrate a few key points that will come in handy later.</p>
+	<p>A través del libro, periódicamente necesitaremos un entendimiendo básico de aleatoriedad, probabilidad y Perlin Noise. La caminata aleatoria nos permitirá demostrar algunos puntos importantes que nos serán útiles más adelante.</p>
 	</li>
 </ol>
 </section>
 
 <section data-type="sect1" id="intro_section2">
-<h2>I.2 The Random Walker Class</h2>
+<h2>I.2 La Clase del Caminante Aleatorio</h2>
+<p><em>En Processing se escribe 'class' pero usaremos la palabra clase.</em></p>
 
 <a data-primary="object-oriented programming" data-secondary="review of" data-type="indexterm"></a> <a data-primary="Processing" data-secondary="review of object-oriented programming with" data-type="indexterm"></a>
 
-<p>Let’s review a bit of object-oriented programming (OOP) first by building a <span class="klass">Walker</span> object. This will be only a cursory review. If you have never worked with OOP before, you may want something more comprehensive; I’d suggest stopping here and reviewing the <a href="http://processing.org/learning/objects/">basics on the Processing website</a> before continuing.</p>
+<p>Repasemos un poco la programación orientada a objetos (POO) primero, construyendo un objeto <span class="klass">Caminante</span>. Esta será solamente un revisión superficial. Si nunca has trabajado con POO antes, y tal vez quieras algo más comprensible; Te sugiero detenerte aquí y revisar <a href="http://processing.org/learning/objects/">los conceptos básicos de Processing</a> en el sitio web antes de continuar.</p>
 
 <a data-primary="object" data-secondary="defined" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="object" data-type="indexterm"></a>
 
-<p>An <strong><em>object</em></strong> in Processing is an entity that has both data and functionality. We are looking to design a <span class="klass">Walker</span> object that both keeps track of its data (where it exists on the screen) and has the capability to perform certain actions (such as draw itself or take a step).</p>
+<p>Un <strong><em>objecto</em></strong> en Processing es una entidad que tiene datos y funcionalidad. Estamos tratando de diseñar un objeto <span class="klass">Caminante</span> que a la vez que lleva el seguimiento de sus propios datos (donde existe en la pantalla) y tiene la capacidad de realizar ciertas acciones (así como dibujarse a sí mismo o dar un paso).</p>
 
 <a data-primary="class (Processing)" data-secondary="defined" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="class" data-type="indexterm"></a>
 
-<p>A <strong><em>class</em></strong> is the template for building actual instances of objects. Think of a class as the cookie cutter; the objects are the cookies themselves.</p>
+<p>Una <strong><em>class</em></strong> es la plantilla para construir casos reales de objetos. Piensa en una classe como el cortador de galletas: los objetos son las galletas en sí.</p>
 
-<p>Let’s begin by defining the <span class="klass">Walker</span> class—what it means to be a <span class="klass">Walker</span> object. The <span class="klass">Walker</span> only needs two pieces of data—a number for its x-location and one for its y-location.</p>
+<p>Comenzemos por definir la clase <span class="klass">Caminante</span> lo que significa ser un objeto <span class="klass">Caminante</span>. El <span class="klass">Caminante</span> sólo necesita dos piezas de datos —un número para su posición en x y uno para su posición en y.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-class Walker {
-  // Objects have data.
+class Caminante {
+  // Objetos tienen datos.
   int x;
   int y;</pre>
 
 <a data-primary="class (Processing)" data-secondary="constructor" data-type="indexterm"></a> <a data-primary="constructor" data-type="indexterm"></a>
 
-<p>Every class must have a constructor, a special function that is called when the object is first created. You can think of it as the object’s <span class="function">setup()</span>. There, we’ll initialize the <span class="klass">Walker</span><code>’</code>s starting location (in this case, the center of the window).</p>
+<p>Cada clase debe tener un constructor, una función especial que es llamada cuando el objeto se crea por primera vez. Puedes pensarla como el <span class="function">setup()</span>del objeto. Ahí, inicializaremos la posición inicial del <span class="klass">Caminante</span><code>’</code> (en este caso, el centro de la pantalla).</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  //Objects have a constructor where they are initialized.
-  Walker() {
+  //Objetos tienen un constructor en donde son inicializados.
+  Caminante() {
     x = width/2;
     y = height/2;
   }</pre>
 
 <a data-primary="class (Processing)" data-secondary="functionality" data-type="indexterm"></a> <a data-primary="functionality" data-type="indexterm"></a>
 
-<p>Finally, in addition to data, classes can be defined with functionality. In this example, a <span class="klass">Walker</span> has two functions. We first write a function that allows the object to display itself (as a black dot).</p>
+<p>Finalmente, además de los datos, las clases pueden ser definidas con funcionalidad. En este ejemplo, un <span class="klass">Caminante</span> tiene dos funciones. Primero escribiremos una función que permita al objeto mostraste a sí mismo (como un punto blanco).</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  // Objects have functions.
-  void display() {
+  // Objetos tienen funciones.	
+  void mostrar() {
     stroke(0);
     point(x,y);
   }</pre>
 
-<p>The second function directs the <span class="klass">Walker</span> object to take a step. Now, this is where things get a bit more interesting. Remember that floor on which we were taking random steps? Well, now we can use a Processing window in that same capacity. There are four possible steps. A step to the right can be simulated by incrementing <span class="var">x</span> (<span class="var">x</span><code>++</code>); to the left by decrementing <span class="var">x</span> (<span class="var">x--</span>); forward by going down a pixel (<span class="var">y++</span>); and backward by going up a pixel (<span class="var">y--</span>). How do we pick from these four choices? Earlier we stated that we could flip two coins. In Processing, however, when we want to randomly choose from a list of options, we can pick a random number using <span class="function">random()</span>.</p>
+<p>La segunda función dirige al objeto <span class="klass">Walker</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un pixel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un pixel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aleatoriamente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
 
 <a data-primary="random number generators" data-secondary="random() function" data-type="indexterm"></a> <a data-primary="random() function" data-type="indexterm"></a>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  void step() {
+  void paso() {
     // 0, 1, 2, or 3
-    int choice = int(random(4));</pre>
+    int alternativa = int(random(4));</pre>
 
-<p>The above line of code picks a random floating point number between 0 and 4 and converts it to an integer, with a result of 0, 1, 2, or 3. Technically speaking, the highest number will never be 4.0, but rather 3.999999999 (with as many 9s as there are decimal places); since the process of converting to an integer lops off the decimal place, the highest <span class="var">int</span> we can get is 3. Next, we take the appropriate step (left, right, up, or down) depending on which random number was picked.</p>
+<p>La línea de código superior elige un número de punto flotante entre 0 y 4 y lo conviernte en un entero, con un resultado de 0, 1, 2, o 3. Técnicamente hablando, el número más grande nunca será 4.0, sino que 3.999999999 (con tantos 9 como espacios de decimal existentes); como en el proceso de convertir a un entero se elimina la parte decimal, el <span class="var">int</span> más alto que obtendramos será 3. A continuación, tomamos el paso apropiado (izquierda, derecha, arriba, o abajo) dependiendo de cual número aleatorio fue elegido.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-    //{!9} The random “choice” determines our step.
-    if (choice == 0) {
+    //{!9} La "alternativa" aleatoria determina nuestro paso.
+    if (alternativa == 0) {
       x++;
-    } else if (choice == 1) {
+    } else if (alternativa == 1) {
       x--;
-    } else if (choice == 2) {
+    } else if (alternativa == 2) {
       y++;
     } else {
       y--;
@@ -161,241 +162,241 @@ class Walker {
   }
 }</pre>
 
-<p>Now that we’ve written the class, it’s time to make an actual <span class="klass">Walker</span> object in the main part of our sketch—<span class="function">setup()</span> and <span class="function">draw()</span>. Assuming we are looking to model a single random walk, we declare one global variable of type <span class="var">Walker</span>.</p>
+<p>Ahora que hemos escrito la clase, es momento de crear un objeto <span class="klass">Caminante</span> actual en la parte principal de nuestro dibujo—<span class="function">setup()</span> y <span class="function">draw()</span>. Asumiento que estamos buscando modelar una caminata aleatoria singular, declaramos una variable globar del tipo <span class="var">Caminante</span>.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// A Walker object
-Walker w;</pre>
+// Un objeto Caminante
+Caminante c;</pre>
 
 <a data-primary="new operator (objects)" data-type="indexterm"></a> <a data-primary="object" data-secondary="new operator" data-type="indexterm"></a>
 
-<p>Then we create the object in <span class="function">setup()</span> by calling the constructor with the <span class="function">new</span> operator.</p>
+<p>Luego creamos el objeto en <span class="function">setup()</span> llamando al constructor con el operador <span class="function">new</span>.</p>
 
 <div data-type="example">
-<h5>Example I.1: Traditional random walk</h5>
+<h5>Ejemplo I.1: Caminata aleatoria tradicional</h5>
 </div>
 
-<p><em>Each time you see the above Example heading in this book, it means there is a corresponding code example available on <a href="http://github.com/shiffman/The-Nature-of-Code-Examples">GitHub</a>.</em></p>
+<p><em>Cada vez que veas el título Ejemplo en este libro, quiere decir que existe el correspondiente ejemplo en código disponible en <a href="http://github.com/shiffman/The-Nature-of-Code-Examples">GitHub</a>.</em></p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void setup() {
   size(640,360);
-  // {!1 .bold} Create the Walker.
-  w = new Walker();
+  // {!1 .bold} rear el Caminante.
+  c = new Caminante();
   background(255);
 }</pre>
 
-<p>Finally, during each cycle through <span class="function">draw()</span>, we ask the <span class="klass">Walker</span> to take a step and draw a dot.</p>
+<p>Finalmente, durante cada ciclo a través de <span class="function">draw()</span>, le pedimos al <span class="klass">Caminante</span> que de un paso y dibuje un punto.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void draw() {
-  //{!2 .bold} Call functions on the Walker.
-  w.step();
-  w.display();
+  //{!2 .bold} Llama a las funciones en el Caminante.
+  c.paso();
+  c.mostrar();
 }</pre>
 
-<p>Since we only draw the background once in <span class="function">setup()</span>, rather than clearing it continually each time through <span class="function">draw()</span>, we see the trail of the random walk in our Processing window.</p>
+<p>Ya que solamente dibujamos el fondo una vez en <span class="function">setup()</span>, en lugar de limpiarlo continuamente cada vez en <span class="function">draw()</span>, vemos el rastro de la caminata aleatoria en nuestra ventana de Processing.</p>
 
 <figure class="screenshot" data-pde="processingjs/intro/_I_1_RandomWalkTraditional/_I_1_RandomWalkTraditional.pde processingjs/intro/_I_1_RandomWalkTraditional/Walker.pde"><img alt="intro ex01" src="intro/intro_ex01.png" />
 <figcaption>&nbsp;</figcaption>
 </figure>
 
-<p>There are a couple improvements we could make to the random walker. For one, this <span class="klass">Walker</span><code>’</code>s step choices are limited to four options—up, down, left, and right. But any given pixel in the window has eight possible neighbors, and a ninth possibility is to stay in the same place.</p>
+<p>Hay una serie de mejoras que podemos hacer al caminante aleatorio. Por un lado, las alternativas de pasos que tiene el <span class="klass">Walker</span> están limitadas a cuatro opciones —arriba, abajo, izquierda, y derecha. Pero, cualquier pixel en la ventana tiene ocho posibles vecinos, y una novena posibilidad es quedarse en el mismo lugar.</p>
 
 <figure id="intro_figure1"><img alt="Figure I.1" src="intro/intro_01.png" />
-<figcaption>Figure I.1</figcaption>
+<figcaption>Figura I.1</figcaption>
 </figure>
 
-<p>To implement a <span class="klass">Walker</span> object that can step to any neighboring pixel (or stay put), we could pick a number between 0 and 8 (nine possible choices). However, a more efficient way to write the code would be to simply pick from three possible steps along the x-axis (-1, 0, or 1) and three possible steps along the y-axis.</p>
+<p>Para implementar un objeto <span class="klass">Walker</span> que pueda dar un paso hacia cualquier pixel vecino (o no moverse), podemos elegir un número entre 0 y 8 (nueve posibles alternativas). Sin embargo, una manera más eficiente de escribir el código sería simplemente elegir entre tres posibles pasos en el eje x (-1, 0, o 1) y tres posibles pasos en el eje y.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  void step() {
-    //{!2} Yields -1, 0, or 1
-    int xstep = int(random(3))-1;
-    int ystep = int(random(3))-1;
-    x += xstep;
-    y += ystep;
+  void paso() {
+    //{!2} Entrega -1, 0, or 1
+    int pasox = int(random(3))-1;
+    int pasoy = int(random(3))-1;
+    x += pasox;
+    y += pasoy;
   }</pre>
 
-<p>Taking this further, we could use floating point numbers (i.e. decimal numbers) for <span class="var">x</span> and <span class="var">y</span> instead and move according to an arbitrary random value between -1 and 1.</p>
+<p>Llevando esto más adelante, podemos usar números de punto flotante (p.ej. númers decimales) para x e y, y mover de acuerdo a un valor arbitrario aleatorio entre -1 y 1.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  void step() {
-    //{!2} Yields any floating point number between -1.0 and 1.0
-    float xstep = random(-1, 1);
-    float ystep = random(-1, 1);
-    x += xstep;
-    y += ystep;
+  void paso() {
+    //{!2} Entrega cualquier número de punto flotante entre -1.0 y 1.0
+    float pasox = random(-1, 1);
+    float pasoy = random(-1, 1);
+    x += pasox;
+    y += pasoy;
   }</pre>
 
-<p>All of these variations on the “traditional” random walk have one thing in common: at any moment in time, the probability that the <span class="klass">Walker</span> will take a step in a given direction is equal to the probability that the <span class="klass">Walker</span> will take a step in any direction. In other words, if there are four possible steps, there is a 1 in 4 (or 25%) chance the <span class="klass">Walker</span> will take any given step. With nine possible steps, it’s a 1 in 9 (or 11.1%) chance.</p>
+<p>Todas estas variaciones en la caminada aleatoria "tradicional" tienen una cosa en común: en cualquier momento en el tiempo, la probabilidad de que el <span class="klass">Caminante</span> de un paso en una dirección específica es igual a la probabilidad de que el <span class="klass">Caminante</span> de un paso en cualquier dirección. En otras palabras, si hay cuatro posibles pasos, hay 1 en 4 (o 25%) chances de que el <span class="klass">Caminante</span> tome una de esos pasos. Con nueve posibles pasos, es 1 en 9 (o 11%) chances.</p>
 
 <a data-primary="random number generators" data-secondary="uniform number distributions and" data-type="indexterm"></a> <a data-primary="uniform number distributions" data-type="indexterm"></a>
 
-<p>Conveniently, this is how the <span class="function">random()</span> function works. Processing’s random number generator (which operates behind the scenes) produces what is known as a “uniform” distribution of numbers. We can test this distribution with a Processing sketch that counts each time a random number is picked and graphs it as the height of a rectangle.</p>
+<p>Convenientemente, así es como la función <span class="function">random()</span> funciona. El generador de números aleatorios de Processing (que trabaja detrás de cámaras) produce lo que es conocida como una distribución de numeros "uniforme". Podemos probar esta distribución con un sketch de Processing que cuenta cada vez qye un número aleatorio es elegido y lo grafica como la altura de un rectángulo.</p>
 
 <figure class="screenshot" data-pde="processingjs/intro/_I_2_RandomDistribution/_I_2_RandomDistribution.pde"><img alt="intro ex02" src="intro/intro_ex02.png" />
 <figcaption>&nbsp;</figcaption>
 </figure>
 
 <div data-type="example">
-<h5>Example I.2: Random number distribution</h5>
+<h5>Ejemplo I.2: Distribución aleatoria de números</h5>
 </div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-//{!1} An array to keep track of how often random numbers are picked
-int[] randomCounts;
+//{!1} Una lista para seguir la cuenta de cuan seguidos los números aleatorios son elegidos
+int[] cuentasAleatorias;
 
 void setup() {
   size(640, 240);
-  randomCounts = new int[20];
+  cuentasAleatorias = new int[20];
 }
 
 void draw() {
   background(255);
 
-  //{!2} Pick a random number and increase the count.
-  int index = int(random(randomCounts.length));
-  randomCounts[index]++;
+  //{!2} Toma un número aleatorio e incrementa la cuenta
+  int indice = int(random(cuentasAleatorias.length));
+  cuentasAleatorias[indice]++;
 
   stroke(0);
   fill(175);
-  int w = width/randomCounts.length;
-  //{!3} Graphing the results
-  for (int x = 0; x &lt; randomCounts.length; x++) {
-    rect(x*w, height-randomCounts[x],
-		     w-1, randomCounts[x]);
+  int ancho = width/cuentasAleatorias.length;
+  //{!3} Graficando los resultados
+  for (int x = 0; x &lt; cuentasAleatorias.length; x++) {
+    rect(x*w, height-cuentasAleatorias[x],
+		     w-1, cuentasAleatorias[x]);
   }
 }</pre>
 
-<p>The above screenshot shows the result of the sketch running for a few minutes. Notice how each bar of the graph differs in height. Our sample size (i.e. the number of random numbers we’ve picked) is rather small and there are some occasional discrepancies, where certain numbers are picked more often. Over time, with a good random number generator, this would even out.</p>
+<p>La captura de pantalla superior muestra los resultados del sketch corriendo por unos minutos. Notemos como cada barra del gráfico difiere en altura. El tamaño de nuestra muestra (p.ej. el número de números aleatorios que hemos elegido) es más bien pequeño y hay algunas discrepancias ocasionales, donde algunos números son elegidos más a menudo. A través del tiempo, con un bueno generador de números aleatorios, esto podría igualar.</p>
 
 <a data-primary="pseudo-random numbers" data-type="indexterm"></a> <a data-primary="random number generators" data-secondary="pseudo-random numbers" data-type="indexterm"></a>
 
 <div data-type="note">
-<h2>Pseudo-Random Numbers</h2>
+<h2>Números Seudo-Aleatorios</h2>
 
-<p>The random numbers we get from the <span class="function">random()</span> function are not truly random; therefore they are known as “pseudo-random.” They are the result of a mathematical function that simulates randomness. This function would yield a pattern over time, but that time period is so long that for us, it’s just as good as pure randomness!</p>
+<p>Los números aleatorios que obtenemos de la función <span class="function">random()</span> no son verdaderamente aleatorios;  por lo tanto se conocen como "seudo-aleatorios." Son el resultado de una función matemática que simula aleatoriedad. Esta función producirá un patrón a través del tiempo, pero ese período de tiempo es tan largo que para nosotros, ¡es tan bueno como aleatoriedad pura!</p>
 </div>
 
 <div data-type="exercise" id="intro_exercise1">
-<h5>Exercise I.1</h5>
+<h5>Ejercicio I.1</h5>
 
-<p>Create a random walker that has a tendency to move down and to the right. (We’ll see the solution to this in the next section.)</p>
+<p>Crea un caminante aleatorio con tendendia a moverse hacia abajo y a la derecha. (Veremos la solución en la siguiente sección.)</p>
 </div>
 </section>
 
 <section data-type="sect1" id="intro_section3">
-<h2>I.3 Probability and Non-Uniform Distributions</h2>
+<h2>I.3 Probabilidad y Distribución No-Uniforme</h2>
 
 <a data-primary="natural phenomena" data-secondary="modeling with the random() function" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="probability and" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="probability and" data-type="indexterm"></a> <a data-primary="probability" data-secondary="non-uniform distributions and" data-type="indexterm"></a> <a data-primary="random number generators" data-secondary="non-uniform distributions" data-tertiary="creating" data-type="indexterm"></a> <a data-primary="random() function" data-secondary="natural phenomena" data-tertiary="modeling with" data-type="indexterm"></a>
 
-<p>Remember when you first started programming in Processing? Perhaps you wanted to draw a lot of circles on the screen. So you said to yourself: “Oh, I know. I’ll draw all these circles at random locations, with random sizes and random colors.” In a computer graphics system, it’s often easiest to seed a system with randomness. In this book, however, we’re looking to build systems modeled on what we see in nature. Defaulting to randomness is not a particularly thoughtful solution to a design problem—in particular, the kind of problem that involves creating an organic or natural-looking simulation.</p>
+<p>¿Recuerdas cuando empezaste a programar por primera vez en Processing? Quizás quisiste dibujar muchos círculos en la pantalla. Entonces te dijiste: "Oh, ya sé. Dibujaré todos estos círculos en posiciones aleatorias, con tamaños aleatorios y colores aleatorios." En un sistema de gráficos computacionales a menudo es fácil llenar un sistema con aleatoriedad. En este libro, sin embargo, estamos buscando construir sistemas modelados en lo que vemos en la naturaleza. Dejar todo a la aleatoriedad no es particularmente una solución acertiv a un problema de diseño —en particular, el tipo de problemas que implican crear una simulación orgánica o de aspecto natural.</p>
 
 <a data-primary="probability of the fittest" data-type="indexterm"></a>
 
-<p>With a few tricks, we can change the way we use <span class="function">random()</span> to produce “non-uniform” distributions of random numbers. This will come in handy throughout the book as we look at a number of different scenarios. When we examine genetic algorithms, for example, we’ll need a methodology for performing “selection”—which members of our population should be selected to pass their DNA to the next generation? Remember the concept of survival of the fittest? Let’s say we have a population of monkeys evolving. Not every monkey will have an equal chance of reproducing. To simulate Darwinian evolution, we can’t simply pick two random monkeys to be parents. We need the more “fit” ones to be more likely to be chosen. We need to define the “probability of the fittest.” For example, a particularly fast and strong monkey might have a 90% chance of procreating, while a weaker one has only a 10% chance.</p>
+<p>Con algunos trucos, podemos cambiar la manera en que usamos <span class="function">random()</span> para producir distribuciones "no-uniformes" de números aleatorios. Ésto nos será muy útil a través del libro mientras a un número de diferentes escenarios. Cuando examinamos algoritmos genéticos, por ejemplo, necesitaremos una metodología para representar la "selección" —¿cuales miembros de nuesta población deberán ser seleccionados para traspasar su ADN hacia la próxima generación? ¿Recuerdas el concepto de la supervivencia del mejor adaptado? Digamos que tenemos una población de monos evolucionando. No cada mono tendrá las mismas chances de reproducción. Para simular la evolución Darwiniana, no podemos simplemente tomar dos monos aleatoriamente para ser padres. Necesitamos el mejor "adaptado" para ser el más probable de ser elegido. Necesitamos definir la "probabilidad del mejor adaptado." Por ejemplo, un mono particularmente rápido y fuerte tiene un 90% de chance de procreación, mientras que uno débil tiene sólo una chance de 10%.</p>
 
 <a data-primary="probability" data-type="indexterm"></a>
 
-<p>Let’s pause here and take a look at probability’s basic principles. First we’ll examine single event probability, i.e. the likelihood that a given event will occur.</p>
+<p>Hagamos una pausa aquí y miremos los principios básicos de probabilidad. Primero examinémos un único evento de probabilidad, p. ej. la probabilidad que ocurra un dado evento.</p>
 
-<p>If you have a system with a certain number of possible outcomes, the probability of the occurrence of a given event equals the number of outcomes that qualify as that event divided by the total number of all possible outcomes. A coin toss is a simple example—it has only two possible outcomes, heads or tails. There is only one way to flip heads. The probability that the coin will turn up heads, therefore, is one divided by two: 1/2 or 50%.</p>
+<p>Si tienes un sistema de ciertos números como posibles resultados, la probabilidad de que un evento dado ocurra es igual al número de resultados que califican como ese evento, dividido por el número total de todos los posibles resultados. Lanzar una moneda es un ejemplo sencillo —tiene sólo dos posibles resultados, cara o sello. Hay sólo una forma de aparezca cara. La probabilidad de que la moneda resulte como cara, por lo tanto, es uno dividido por dos: 1/5 o 50%.</p>
 
-<p>Take a deck of fifty-two cards. The probability of drawing an ace from that deck is:</p>
+<p>Toma una baraja de cincuenta y dos cartas. La probabilidad de elegir un as desde el mazo es:</p>
 
-<p><span class="formula">number of aces / number of cards = 4 / 52 = 0.077 = ~ 8%</span></p>
+<p><span class="formula">número de aces / número de cartas = 4 / 52 = 0.077 = ~ 8%</span></p>
 
-<p>The probability of drawing a diamond is:</p>
+<p>La probabilidad de elegir un diamante es:</p>
 
-<p><span class="formula">number of diamonds / number of cards = 13 / 52 = 0.25 = 25%</span></p>
+<p><span class="formula">número de diamantes/ número de cartas = 13 / 52 = 0.25 = 25%</span></p>
 
-<p>We can also calculate the probability of multiple events occurring in sequence. To do this, we simply multiply the individual probabilities of each event.</p>
+<p>Podemos también calcular la probabilidad que multiples eventos ocurran en secuencia. Para hacer esto,  simplemente multiplicamos las probabilidades individuales de cada evento.</p>
 
-<p>The probability of a coin turning up heads three times in a row is:</p>
+<p>La probabilidad de que una moneda de cara tres vecez seguidas es:</p>
 
 <p><span class="formula">(1/2) * (1/2) * (1/2) = 1/8 (or 0.125)</span></p>
 
-<p>&hellip;meaning that a coin will turn up heads three times in a row one out of eight times (each “time” being three tosses).</p>
+<p>…quiere decir que una moneda de cada tres veces seguidas es una en ocho (cada "vez" siendo tres lanzamientos).</p>
 
 <div data-type="exercise" id="intro_exercise2">
-<h5>Exercise I.2</h5>
+<h5>Ejercicio I.2</h5>
 
-<p>What is the probability of drawing two aces in a row from a deck of fifty-two cards?</p>
+<p>¿Cuál es la probabilidad de que aparezcan dos aces seguidos de una baraja de cincuenta y dos cartas?</p>
 </div>
 
 <a data-primary="arrays" data-secondary="custom distributions" data-tertiary="creating with" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="creating with arrays" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="creating with arrays" data-type="indexterm"></a> <a data-primary="random() function" data-secondary="non-uniform distributions" data-tertiary="creating with" data-type="indexterm"></a>
 
-<p>There are a couple of ways in which we can use the <span class="function">random()</span> function with probability in code. One technique is to fill an array with a selection of numbers—some of which are repeated—then choose random numbers from that array and generate events based on those choices.</p>
+<p>Hay un par de maneras en donde podemos usar la función <span class="function">random()</span> con probabilidades en código. Una técnica es llenar una lista con una selección de números —con algunos de ellos se repiten— entonces elegir números aleatorios desde esa lista y generar eventos en base a esas opciones.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-int[] stuff = new int[5];
-//{!2} 1 is stored in the array twice, making it more likely to be picked.
-stuff[0] = 1;
-stuff[1] = 1;
+int[] cosas = new int[5];
+//{!2} 1 es almacenado en la lista dos veces, haciendolo más fácil de ser elegido.
+cosas[0] = 1;
+cosas[1] = 1;
 
-stuff[2] = 2;
-stuff[3] = 3;
-stuff[4] = 3;
-// Picking a random element from an array
-int index = int(random(stuff.length));</pre>
+cosas[2] = 2;
+cosas[3] = 3;
+stcosasuff[4] = 3;
+//Elige un elemento de la lista aleatoriamente
+int indice = int(random(cosas.length));</pre>
 
-<p>Running this code will produce a 40% chance of printing the value 1, a 20% chance of printing 2, and a 40% chance of printing 3.</p>
+<p>Correr este código entregará un 40% de chance de imprimir el valor 1, un 20% de chance de imprimir un 2, y un 40% de chance de imprimir un 3.</p>
 
-<p>We can also ask for a random number (let’s make it simple and just consider random floating point values between 0 and 1) and allow an event to occur only if our random number is within a certain range. For example:</p>
+<p>También podemos pedir por un número aleatorio (hagámoslo más fácil y sólo consideremos un número aleatorio de punto flotante entre 0 y 1) y permitámosle a un evento que ocurra sólo si nouestro número aleatorio es entre cierto rango. Por ejemplo:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// A probability of 10%
-float prob = 0.10;
-// A random floating point between 0 and 1
+// Una probabilidad de 10%
+float probabilidad = 0.10;
+// Un valor aleatorio de punto flotante entre 0 y 1
 float r = random(1);
-// If the random number is less than 0.1, try again!
-if (r &lt; prob) {
-  println("Try again!");
+// Si nuestro número aleatorio es menor a 0.1, intenta nuevamente!
+if (r &lt; probabilidad) {
+  println("Intenta nuevamente!");
 }</pre>
 
-<p>This method can also be applied to multiple outcomes. Let’s say that Outcome A has a 60% chance of happening, Outcome B, a 10% chance, and Outcome C, a 30% chance. We implement this in code by picking a random float and seeing into what range it falls.</p>
+<p>Este método también puede ser aplicado a multiples resultados. Digamos que Resultado A tiene un 60% de chance de ocurrir, Resultado B, un 10% de chance, y Resultado C, un 30% de chance. Podemos implementar esto en código eligiendo un número flotante y viendo dentro del rango que cae.</p>
 
 <ul>
 	<li>
-	<p><em>between 0.00 and 0.60 (60%) &ndash;&gt; Outcome A</em></p>
+	<p><em>entre 0.00 and 0.60 (60%) &ndash;&gt; Resultado A</em></p>
 	</li>
 	<li>
-	<p><em>between 0.60 and 0.70 (10%) &ndash;&gt; Outcome B</em></p>
+	<p><em>entre 0.60 and 0.70 (10%) &ndash;&gt; Resultado B</em></p>
 	</li>
 	<li>
-	<p><em>between 0.70 and 1.00 (30%) &ndash;&gt; Outcome C</em></p>
+	<p><em>entre 0.70 and 1.00 (30%) &ndash;&gt; Resultado C</em></p>
 	</li>
 </ul>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-float num = random(1);
+float numero = random(1);
 
-// If random number is less than 0.6
-if (num &lt; 0.6) {
-  println("Outcome A");
-// Between 0.6 and 0.7
-} else if (num &lt; 0.7) {
-  println("Outcome B");
-// Greater than 0.7
+// Si el número es menor a 0.6
+if (numero &lt; 0.6) {
+  println("Resultado A");
+// Entre 0.6 y 0.7
+} else if (numero &lt; 0.7) {
+  println("Resultado B");
+// Mayor que 0.7
 } else {
-  println("Outcome C");
+  println("Resultado C");
 }</pre>
 
-<p>We could use the above methodology to create a random walker that tends to move to the right. Here is an example of a <span class="klass">Walker</span> with the following probabilities:</p>
+<p>Podemos usar la metodología superior para crear un Caminante Aleatorio que tienda a moverse hacia la derecha. Aquí hay un enemplo de un <span class="klass">Caminante</span> con las siguientes probabilidades:</p>
 
 <ul>
 	<li>
-	<p><em>chance of moving up: 20%</em></p>
+	<p><em>chance de movimiento hacia arriba: 20%</em></p>
 	</li>
 	<li>
-	<p><em>chance of moving down: 20%</em></p>
+	<p><em>chance de movimiento hacia abajo: 20%</em></p>
 	</li>
 	<li>
-	<p><em>chance of moving left: 20%</em></p>
+	<p><em>chance de movimiento hacia la izquierda: 20%</em></p>
 	</li>
 	<li>
-	<p><em>chance of moving right: 40%</em></p>
+	<p><em>chance de movimiento hacia la derecha: 40%</em></p>
 	</li>
 </ul>
 
@@ -404,14 +405,14 @@ if (num &lt; 0.6) {
 </figure>
 
 <div data-type="example">
-<h5>Example I.3: Walker that tends to move to the right</h5>
+<h5>Ejemplo I.3 Caminante que tienen a moverse hacia la derecha</h5>
 </div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-  void step() {
+  void paso() {
 
     float r = random(1);
-    //{!2} A 40% chance of moving to the right!
+    //{!2} Un 40% de chance de que se mueva a la derecha!
     if (r &lt; 0.4) {
       x++;
     } else if (r &lt; 0.6) {
@@ -424,9 +425,9 @@ if (num &lt; 0.6) {
   }</pre>
 
 <div data-type="exercise" id="intro_exercise3">
-<h5>Exercise I.3</h5>
+<h5>Ejercicio I.3</h5>
 
-<p>Create a random walker with dynamic probabilities. For example, can you give it a 50% chance of moving in the direction of the mouse?</p>
+<p>Crea un Caminante Aleatorio con posibilidades dinámicas. Por ejemplo, ¿puedes darle un 50% de chance de movimiento en la dirección de mouse?</p>
 </div>
 </section>
 
