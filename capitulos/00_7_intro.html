@@ -706,11 +706,11 @@ float montecarlo() {
 
 <a data-primary="natural phenomena" data-secondary="Perlin noise and" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="Perlin noise" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="Perlin noise" data-type="indexterm"></a> <a data-primary="Perlin noise" data-secondary="natural phenomena" data-tertiary="modeling with" data-type="indexterm"></a> <a data-primary="&lt;em&gt;Tron&lt;/em&gt; (1982)" data-type="indexterm"></a>
 
-<p>A good random number generator produces numbers that have no relationship and show no discernible pattern. As we are beginning to see, a little bit of randomness can be a good thing when programming organic, lifelike behaviors. However, randomness as the single guiding principle is not necessarily natural. An algorithm known as “Perlin noise,” named for its inventor Ken Perlin, takes this concept into account. Perlin developed the noise function while working on the original <em>Tron</em> movie in the early 1980s; it was designed to create procedural textures for computer-generated effects. In 1997 Perlin won an Academy Award in technical achievement for this work. Perlin noise can be used to generate various effects with natural qualities, such as clouds, landscapes, and patterned textures like marble.</p>
+<p>Un buen generador de números aleatorios, produce valores que no tienen relación entre si y no muestran patrones detectables. Como hemos comenzado a ver, un poco de aleatoriedad puede ser un buen elemento cuando se quiere lograr programación orgánica, crear comportamientos mas real. Sin embargo, la aleatoriedad como principio no es necesariamente natural. Un algoritmo conocido como "Perlin noise", nombrado así por su inventor Ken Perlin, toma este concepto en cuenta. Perlin desarrollo la función de noise -ruido- mientras trabajaba en la película Tron a principios de la década de 1980;  fue diseñado para crear texturas para efectos generados por computador. En 1997 Ken Perlin ganó un Premio de la Academia por los logros técnicos de su trabajo. Perlin noise puede ser usado para generar varios efectos con atributos naturales, como nubes, paisajes y patrones texturizados como el mármol.</p>
 
 <a data-primary="naturally ordered sequence of numbers" data-type="indexterm"></a> <a data-primary="pseudo-random numbers" data-secondary="Perlin noise and" data-type="indexterm"></a>
 
-<p>Perlin noise has a more organic appearance because it produces a naturally ordered (“smooth”) sequence of pseudo-random numbers. The graph on the left below shows Perlin noise over time, with the x-axis representing time; note the smoothness of the curve. The graph on the right shows pure random numbers over time. (The code for generating these graphs is available in the accompanying book downloads.)</p>
+<p>Perlin noise tiene una apariencia mas orgánica porque produce una secuencia de números pseudo aleatorios, ordenados naturalmente. El gráfico que se ve a la izquierda muestra Perlin noise a través del tiempo, el eje x representa el tiempo; observa la fluidez de la curva. El gráfico de la derecha exhibe aleatoriedad pura de números durante el tiempo. (El código para generar estos gráficos esta disponible en el libro adjunto en las descargas). </p>
 
 <figure class="two-col"><img alt="Figure I.5: Noise" src="intro/intro_05.png" />
 <figcaption>Figure I.5: Noise&nbsp;</figcaption>
@@ -722,29 +722,29 @@ float montecarlo() {
 
 <a data-primary="noise() function (Processing)" data-type="indexterm"></a> <a data-primary="Perlin noise" data-secondary="noise() function (Processing)" data-type="indexterm"></a> <a data-primary="Processing" data-secondary="noise() function" data-type="indexterm"></a>
 
-<p>Processing has a built-in implementation of the Perlin noise algorithm: the function <span class="function">noise()</span>. The <span class="function">noise()</span> function takes one, two, or three arguments, as noise is computed in one, two, or three dimensions. Let’s start by looking at one-dimensional noise.</p>
+<p>Processing tiene un implemento construido de el algoritmo Perlin noise: la función<span class="function">noise()</span>. The <span class="function">noise()</span> Esta función toma una, dos o tres argumentos, dependiendo de si noise es calculado en una, dos o tres dimensiones. Comencemos por observando noise unidimensional.</p>
 
 <a data-primary="noiseDetail() function (Processing)" data-type="indexterm"></a> <a data-primary="Processing" data-secondary="noiseDetail() function" data-type="indexterm"></a>
 
 <div data-type="note">
 <h2 id="noise-detail">Noise Detail</h2>
 
-<p>The Processing <a href="http://processing.org/reference/noise_.html">noise reference</a> tells us that noise is calculated over several “octaves.” Calling the <a href="http://processing.org/reference/noiseDetail_.html"><span class="function">noiseDetail()</span></a> function will change both the number of octaves and their importance relative to one another. This in turn changes how the noise function behaves.</p>
+<p>La <a href="http://processing.org/reference/noise_.html">referencia noise</a> de Processing dice que esta es calculada sobre varias "octavas". Llamar la función <a href="http://processing.org/reference/noiseDetail_.html"><span class="function">noiseDetail()</span></a> va a cambiar el numero de la octava y su importancia relativa entre una y otra. Esto a su vez va a cambiar como la función noise se comporta.</p>
 
-<p>An online lecture by Ken Perlin lets you learn more about how noise works from <a href="http://www.noisemachine.com/talk1/">Perlin himself</a>.</p>
+<p>Para aprender mas sobre como funciona noise, Ken Perlin <a href="http://www.noisemachine.com/talk1/">Ken Perlin</a> ofrece una conferencia en línea donde explica más el tema.</p>
 </div>
 
-<p>Consider drawing a circle in our Processing window at a random x-location.</p>
+<p>Dibuja un circulo en la ventana de Processing, con la posición de x aleatoria.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// A random x-location
+// posición aleatoria de x
 float x = random(0, width);
 ellipse(x, 180, 16, 16);</pre>
 
-<p>Now, instead of a random x-location, we want a Perlin noise x-location that is “smoother.” You might think that all you need to do is replace <span class="function">random()</span> with <span class="function">noise()</span>, i.e.</p>
+<p>Ahora, en vez de una locación aleatoria de x, queremos una locación de el eje x generado por Perlin noise, que es mas suave. Probablemente pensaras que lo único que se necesita es reemplazar <span class="function">random()</span> por <span class="function">noise()</span>,p. ej.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-//{.line-through} A noise x-location?
+//{.line-through} Posición noise de x?
 float x = noise(0, width);</pre>
 
 <a data-primary="noise() function (Processing)" data-secondary="arguments for" data-type="indexterm"></a>
