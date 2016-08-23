@@ -137,7 +137,7 @@ class Caminante {
     point(x,y);
   }</pre>
 
-<p>La segunda función dirige al objeto <span class="klass">Walker</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un píxel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un píxel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aletaoria mente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
+<p>La segunda función dirige al objeto <span class="klass">Walker</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un píxel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un píxel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aletaoriamente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
 
 <a data-primary="random number generators" data-secondary="random() function" data-type="indexterm"></a> <a data-primary="random() function" data-type="indexterm"></a>
 
@@ -295,7 +295,7 @@ void draw() {
 
 <a data-primary="probability of the fittest" data-type="indexterm"></a>
 
-<p>Con algunos trucos, podemos cambiar la manera en que usamos <span class="function">random()</span> para producir distribuciones "no-uniformes" de números aleatorios. Ésto nos será muy útil a través del libro mientras a un número de diferentes escenarios. Cuando examinamos algoritmos genéticos, por ejemplo, necesitaremos una metodología para representar la "selección" —¿cuales miembros de nuesta población deberán ser seleccionados para traspasar su ADN hacia la próxima generación? ¿Recuerdas el concepto de la supervivencia del mejor adaptado? Digamos que tenemos una población de monos evolucionando. No cada mono tendrá las mismas chances de reproducción. Para simular la evolución Darwiniana, no podemos simplemente tomar dos monos aletaoria mente para ser padres. Necesitamos el mejor "adaptado" para ser el más probable de ser elegido. Necesitamos definir la "probabilidad del mejor adaptado." Por ejemplo, un mono particularmente rápido y fuerte tiene un 90% de chance de procreación, mientras que uno débil tiene sólo una chance de 10%.</p>
+<p>Con algunos trucos, podemos cambiar la manera en que usamos <span class="function">random()</span> para producir distribuciones "no-uniformes" de números aleatorios. Ésto nos será muy útil a través del libro mientras a un número de diferentes escenarios. Cuando examinamos algoritmos genéticos, por ejemplo, necesitaremos una metodología para representar la "selección" —¿cuales miembros de nuesta población deberán ser seleccionados para traspasar su ADN hacia la próxima generación? ¿Recuerdas el concepto de la supervivencia del mejor adaptado? Digamos que tenemos una población de monos evolucionando. No cada mono tendrá las mismas chances de reproducción. Para simular la evolución Darwiniana, no podemos simplemente tomar dos monos aletaoriamente para ser padres. Necesitamos el mejor "adaptado" para ser el más probable de ser elegido. Necesitamos definir la "probabilidad del mejor adaptado." Por ejemplo, un mono particularmente rápido y fuerte tiene un 90% de chance de procreación, mientras que uno débil tiene sólo una chance de 10%.</p>
 
 <a data-primary="probability" data-type="indexterm"></a>
 
@@ -338,7 +338,7 @@ cosas[1] = 1;
 cosas[2] = 2;
 cosas[3] = 3;
 stcosasuff[4] = 3;
-//Elige un elemento de la lista aletaoria mente
+//Elige un elemento de la lista aletaoriamente
 int indice = int(random(cosas.length));</pre>
 
 <p>Correr este código entregará un 40% de chance de imprimir el valor 1, un 20% de chance de imprimir un 2, y un 40% de chance de imprimir un 3.</p>
@@ -609,7 +609,7 @@ void draw() {
 
 <a data-primary="distributions" data-secondary="custom" data-type="indexterm"></a> <a data-primary="Lévy flight" data-type="indexterm"></a> <a data-primary="non-uniform distributions" data-secondary="custom" data-type="indexterm"></a> <a data-primary="distributions" data-secondary="non-uniform" data-tertiary="custom" data-type="indexterm"></a> <a data-primary="oversampling" data-type="indexterm"></a> <a data-primary="random number generators" data-secondary="custom distributions" data-tertiary="creating" data-type="indexterm"></a> <a data-primary="random walks" data-secondary="Lévy flight" data-type="indexterm"></a> <a data-primary="random walks" data-secondary="oversampling" data-type="indexterm"></a>
 
-<p>Llegará algún momento en tu vida cuando no quieras una distribución de valores aleatorios, o una Guassiana. Imaginemos por un momento que tu eres un caminante aleatorio en busca de comida. Moverse aletaoria mente alrededor del espacio parece una estrategia razonable para encontrar algo para comer. Despúes de todo, tu no sabes donde está la comida, entonces podrías buscar aletaoria mente hasta encontrarlo. El problema, como ya habrás notado, es que el caminante aleatorio regresa a lugares visitados anteriormente muchas veces (esto es conocido como "sobremuestreo"). Una estrategia para evitar un problema como este, es que de vez en cuando, tome un paso más largo. Esto permite al caminante buscar aletaoria mente alrededor de una posición especifica mientas salta periodicamente muy lejos para reducir la cantidad de sobremuestre. Esta variación en la caminata aleatoria (conocida como vuelo de Lévy) requiere un conjunto personalizado de probabilidades. Aunque no es una implementación exacta del vuelo de Lévy, podemos declarar el estado de la distribución personalizada como el siguiente: mientras más largo el paso, menos posibilidades de ser elegido y mientras más corto el paso, mas posibilidades  de ser elegido.</p>
+<p>Llegará algún momento en tu vida cuando no quieras una distribución de valores aleatorios, o una Guassiana. Imaginemos por un momento que tu eres un caminante aleatorio en busca de comida. Moverse aletaoriamente alrededor del espacio parece una estrategia razonable para encontrar algo para comer. Despúes de todo, tu no sabes donde está la comida, entonces podrías buscar aletaoriamente hasta encontrarlo. El problema, como ya habrás notado, es que el caminante aleatorio regresa a lugares visitados anteriormente muchas veces (esto es conocido como "sobremuestreo"). Una estrategia para evitar un problema como este, es que de vez en cuando, tome un paso más largo. Esto permite al caminante buscar aletaoriamente alrededor de una posición especifica mientas salta periodicamente muy lejos para reducir la cantidad de sobremuestre. Esta variación en la caminata aleatoria (conocida como vuelo de Lévy) requiere un conjunto personalizado de probabilidades. Aunque no es una implementación exacta del vuelo de Lévy, podemos declarar el estado de la distribución personalizada como el siguiente: mientras más largo el paso, menos posibilidades de ser elegido y mientras más corto el paso, mas posibilidades  de ser elegido.</p>
 
 <p>Anteriormente en el prólogo, vimos que podíamos generar una probabilidad de distribución personalizada llenando una lista con valores(algunos duplicados paraque puedan ser elegidos más frecuentemente) o probando el resultado <span class="function">random()</span>. Podemos implementar el vuelo de Lévy diciendo que hay 1% de probabilidad de que el caminante de un paso largo.</p>
 
@@ -937,13 +937,13 @@ class Caminante {
 
 <p>Esta es la razón por la cual noise fue originalmente inventado. Los parámetros pueden ser ajustados o los colores alterados, para hacer que la imagen resultante tenga un aspecto más parecido al mármol o a la madera, o a cualquier otra textura orgánica. </p>
 
-<p>Vamos a echar un vistazo rápido a la forma de implementar noise bidimensional en Processing.  Si quisiéramos colorear cada píxel de una ventana aleatoria mente, necesitaríamos un bucle anidado, uno que  acceda a cada píxel y  recoja un valor de brillo al azar. </p>
+<p>Vamos a echar un vistazo rápido a la forma de implementar noise bidimensional en Processing.  Si quisiéramos colorear cada píxel de una ventana aletaoriamente, necesitaríamos un bucle anidado, uno que  acceda a cada píxel y  recoja un valor de brillo al azar. </p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 loadPixels();
 for (int x = 0; x &lt; width; x++) {
   for (int y = 0; y &lt; height; y++) {
-    //{!1} Brillo generado aletaoria mente por la función random()!
+    //{!1} Brillo generado aletaoriamente por la función random()!
     float bright = random(255);
     pixels[x + y * width] = color(bright);
   }
@@ -996,7 +996,7 @@ for (int x = 0; x &lt; width; x++) {
 </div>
 
 <div data-type="exercise" id="intro_exercise10">
-<h5>Ejercicio I.10</h5>
+<h5>Exercise I.10</h5>
 
 <p>Utiliza los valores de noise para hacer elevaciones de topográficas. Usa como referente Mira el pantallazo de abajo como referente.</p>
 
