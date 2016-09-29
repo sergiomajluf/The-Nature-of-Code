@@ -250,62 +250,62 @@ location = location + velocity;</pre>
 </section>
 
 <section data-type="sect1" id="chapter01_section3">
-<h2>1.3 Vector Addition</h2>
+<h2>1.3 Adición de Vectores</h2>
 
 <a data-primary="add() function (PVector class)" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="adding" data-type="indexterm"></a>
 
-<p>Before we continue looking at the <span class="klass">PVector</span> class and its <span class="function">add()</span> method (purely for the sake of learning since it’s already implemented for us in Processing itself), let’s examine vector addition using the notation found in math and physics textbooks.</p>
+<p>Antes de que continuemos viendo la clase <span class="klass">PVector</span> y su método de <span class="function">add()</span> (puramente por el bien de aprender ya que ya está implementado para nosotros en Processing), examinemos la adición de vectores usando una notación encontrada en libros de matemáticas y física.</p>
 
 <a data-primary="scalar notation" data-secondary="vs. vector notation" data-type="indexterm"></a> <a data-primary="vector notation" data-secondary="vs. scalar notation" data-type="indexterm"></a>
 
-<p>Vectors are typically written either in boldface type or with an arrow on top. For the purposes of this book, to distinguish a <strong><em>vector</em></strong> from a <strong><em>scalar</em></strong> (<em>scalar</em> refers to a single value, such as an integer or a floating point number), we’ll use the arrow notation:</p>
+<p>Los vectores están generalmente escritos en negrita o con una flecha por arriba. Para el propósito de este libro, para distinguir un <strong><em>vector</em></strong> de un <strong><em>escalar</em></strong> (un <em>escalar</em> se refiere a un único valor, ya sea un número entero o un número de punto flotante), usaremos la notación con la flecha:</p>
 
 <ul>
 	<li>
 	<p>Vector: $$\vec{v}$$</p>
 	</li>
 	<li>
-	<p>Scalar: {x}</p>
+	<p>Escalar: {x}</p>
 	</li>
 </ul>
 
-<p>Let’s say I have the following two vectors:</p>
+<p>Digamos que tenemos los dos siguientes vectores:</p>
 
 <figure id="chapter01_figure5"><img alt="Figure 1.5" src="chapter01/ch01_05.png" />
-<figcaption>Figure 1.5</figcaption>
+<figcaption>Figura 1.5</figcaption>
 </figure>
 
-<p>Each vector has two components, an <span class="var">x</span> and a <span class="var">y</span>. To add two vectors together, we simply add both <span class="var">x</span><code>’</code>s and both <span class="var">y</span><code>’</code>s.</p>
+<p>Cada vector tiene dos componentes, una en <span class="var">x</span> y una en <span class="var">y</span>. Para sumar dos vectores, simplemente tenemos que sumar ambas <span class="var">x</span><code>’</code>s y ambas <span class="var">y</span><code>’</code>s.</p>
 
 <figure id="chapter01_figure6"><img alt="Figure 1.6" src="chapter01/ch01_06.png" />
-<figcaption>Figure 1.6</figcaption>
+<figcaption>Figura 1.6</figcaption>
 </figure>
 
-<p>In other words:</p>
+<p>En otras palabras:</p>
 
 <p>{wuplusv}</p>
 
-<p>can be written as:</p>
+<p>puede ser escrito como:</p>
 
 <p>{wxuxplusvx}<br />
 {wyuyplusvy}</p>
 
-<p>Then, replacing <span class="var">u</span> and <span class="var">v</span> with their values from Figure 1.6, we get:</p>
+<p>Luego, reemplazando <span class="var">u</span> y <span class="var">v</span> con sus valores de la Figura 1.6, tenemos:</p>
 
 <p>{wx53}<br />
 {wy24}</p>
 
-<p>which means that:</p>
+<p>lo que significa que:</p>
 
 <p>{wx8} {wy6}</p>
 
-<p>Finally, we write that as a vector:</p>
+<p>Finalmente, escribimos que como vector:</p>
 
 <p>{w86}</p>
 
 <a data-primary="add() function (PVector class)" data-secondary="implementation of" data-type="indexterm"></a>
 
-<p>Now that we understand how to add two vectors together, we can look at how addition is implemented in the <span class="klass">PVector</span> class itself. Let’s write a function called <span class="function">add()</span> that takes another <span class="klass">PVector</span> object as its argument.</p>
+<p>Ahora que entendemos cómo sumar dos vectores, podemos ver cómo la adición es implementada en la clase <span class="klass">PVector</span> Escribamos una función llamada <span class="function">add()</span> que toma como argumento otro objeto <span class="klass">PVector</span>.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 class PVector {
@@ -318,7 +318,7 @@ class PVector {
     y = y_;
   }
 
-  // {!4 .bold} New! A function to add another PVector to this PVector.  Simply add the <em>x</em> components and the <em>y</em>; components together.
+  // {!4 .bold} Nuevo! Una función para sumar otro PVector a este PVector. Simplemente suma los componentes de <em>x</em> y los componentes de <em>y</em>;.
   void add(PVector v) {
     y = y + v.y;
     x = x + v.x;
@@ -327,85 +327,85 @@ class PVector {
 
 <a data-primary="bouncing ball sketch" data-secondary="implementing with vectors" data-type="indexterm"></a>
 
-<p>Now that we see how <span class="function">add()</span> is written inside of <span class="klass">PVector</span>, we can return to our bouncing ball example with its <strong><em>location + velocity</em></strong> algorithm and implement vector addition:</p>
+<p>Ahora que vemos cómo <span class="function">add()</span> está escrita dentro de <span class="klass">PVector</span>, podemos volver a nuestro ejemplo de la pelota que rebota con su algoritmo de <strong><em>localización + velocidad</em></strong> e implementarle una adición de vectores:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// {!1 .line-through}Add the current velocity to the location.
-location = location + velocity;
-location.add(velocity);</pre>
+// {!1 .line-through}Suma la actual velocidad a su localización.
+localizacion = localizacion + velocidad;
+localizacion.add(velocidad);</pre>
 
-<p>And here we are, ready to rewrite the bouncing ball example using <span class="klass">PVector</span>.</p>
+<p>Y aquí estamos, listos para reescribir el ejemplo de la pelota que rebota usando <span class="klass">PVector</span>.</p>
 
 <a data-primary="dot syntax" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="dot syntax" data-type="indexterm"></a>
 
-<div data-type="example"><h5>Example 1.2: Bouncing ball with PVectors!</h5></div>
+<div data-type="example"><h5>Ejemplo 1.2: Pelota que rebota con PVectors!</h5></div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-//{!2 .bold} Instead of a bunch of floats, we now just have two PVector variables.
-PVector location;
-PVector velocity;
+//{!2 .bold} En vez de muchos floats, ahora tenemos solo dos variables PVector.
+PVector localizacion;
+PVector velocidad;
 
 void setup() {
   size(640,360);
   //{!2 .bold .no-comment}
-  location = new PVector(100, 100);
-  velocity = new PVector(2.5, 5);
+  localizacion = new PVector(100, 100);
+  velocidad = new PVector(2.5, 5);
 }
 
 void draw() {
   background(255);
   //{!1 .bold .no-comment}
-  location.add(velocity);
+  localizacion.add(velocidad);
 
-  //{!6 .bold} We still sometimes need to refer to the individual components of a PVector and can do so using the dot syntax: location.x, velocity.y, etc.
-  if ((location.x &gt; width) || (location.x &lt; 0)) {
-    velocity.x = velocity.x * -1;
+  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido en inglés como "dot syntax": localizacion.x, velocidad.y, etc.
+  if ((localizacion.x &gt; width) || (localizacion.x &lt; 0)) {
+    velocidad.x = velocidad.x * -1;
   }
-  if ((location.y &gt; height) || (location.y &lt; 0)) {
-    velocity.y = velocity.y * -1;
+  if ((localizacion.y &gt; height) || (localizacion.y &lt; 0)) {
+    velocidad.y = velocidad.y * -1;
   }
 
   stroke(0);
   fill(175);
-  ellipse(location.x, location.y, 16, 16);
+  ellipse(localizacion.x, localizacion.y, 16, 16);
 }</pre>
 
-<p>Now, you might feel somewhat disappointed. After all, this may initially appear to have made the code more complicated than the original version. While this is a perfectly reasonable and valid critique, it’s important to understand that we haven’t fully realized the power of programming with vectors just yet. Looking at a simple bouncing ball and only implementing vector addition is just the first step. As we move forward into a more complex world of multiple objects and multiple <strong><em>forces</em></strong> (which we’ll introduce in Chapter 2), the benefits of <span class="klass">PVector</span> will become more apparent.</p>
+<p>Ahora, podrías sentirte un poco decepcionado. Después de todo, esto podría parecer inicialmente que hizo el código más complicado que la versión original. Aunque esta es una crítica perfectamente razonable, es importante entender que todavía no nos hemos dado cuenta realmente del poder de programar con vectores. Mirando una simple pelota que rebota e implementando la suma de vectores, es solo el primer paso. Mientras nos adentramos en un mundo mucho más complejo de múltiples objetos y múltiples <strong><em>fuerzas</em></strong> (las cuales introduciremos en el Capítulo 2), los beneficios de <span class="klass">PVector</span> se harán notar cada vez más.</p>
 
-<p>We should, however, note an important aspect of the above transition to programming with vectors. Even though we are using <span class="klass">PVector</span> objects to describe two values—the <span class="var">x</span> and <span class="var">y</span> of location and the <span class="var">x</span> and <span class="var">y</span> of velocity—we still often need to refer to the <em>x</em> and <em>y</em> components of each <span class="klass">PVector</span> individually. When we go to draw an object in Processing, there’s no means for us to say:</p>
+<p>Sin embargo, debemos notar un aspecto importante de la transición a programar con vectores. Aunque estamos usando objetos <span class="klass">PVector</span> para describir los valores—la <span class="var">x</span> e <span class="var">y</span> de localización y la <span class="var">x</span> e <span class="var">y</span> de velocidad—todavía necesitaremos referirnos a los componentes <em>x</em> e <em>y</em> de cada <span class="klass">PVector</span> individualmente. Cuando vayamos a Processing para dibujar un objeto, no hay necesidad de decir:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 // {.line-through .no-comment}
-ellipse(location, 16, 16);</pre>
+ellipse(localizacion, 16, 16);</pre>
 
-<p>The <span class="function">ellipse()</span> function does not allow for a <span class="klass">PVector</span> as an argument. An ellipse can only be drawn with two scalar values, an <span class="var">x</span>-coordinate and a <span class="var">y</span>-coordinate. And so we must dig into the <span class="klass">PVector</span> object and pull out the <em>x</em> and <em>y</em> components using object-oriented dot syntax.</p>
-
-<pre data-code-language="java" data-type="programlisting" class="codesplit">
-ellipse(location.x, location.y, 16, 16);</pre>
-
-<p>The same issue arises when testing if the circle has reached the edge of the window, and we need to access the individual components of both vectors: <span class="var">location</span> and <span class="var">velocity</span>.</p>
+<p>La función <span class="function">ellipse()</span> no permite usar un <span class="klass">PVector</span> como argumento. Una elipse puede ser dibujada sólo con dos valores escalar, una coordenada en <span class="var">x</span> y una coordenada en <span class="var">y</span>. Entonces debemos meternos dentro del objeto <span class="klass">PVector</span> y sacar los componentes <em>x</em> e <em>y</em> usando la <em>dot syntax</em> orientada en el objeto.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-if ((location.x &gt; width) || (location.x &lt; 0)) {
-  velocity.x = velocity.x * -1;
+ellipse(localizacion.x, localizacion.y, 16, 16);</pre>
+
+<p>La misma cuestión surge cuando probamos si el círculo ha llegado al borde de la ventana, y debemos acceder a los componentes individuales de ambos vectores: <span class="var">localizacion</span> y <span class="var">velocidad</span>.</p>
+
+<pre data-code-language="java" data-type="programlisting" class="codesplit">
+if ((localizacion.x &gt; width) || (localizacion.x &lt; 0)) {
+  velocidad.x = velocidad.x * -1;
 }</pre>
 
 <div data-type="exercise" id="chapter01_exercise1">
-<h5>Exercise 1.1</h5>
+<h5>Ejercicio 1.1</h5>
 
-<p>Find something you’ve previously made in Processing using separate <span class="var">x</span> and <span class="var">y</span> variables and use <span class="klass">PVector</span><code>s</code> instead.</p>
+<p>Encuentra algo que hayas hecho previamente en Processing usando variables separadas de <span class="var">x</span> e <span class="var">y</span>, y en lugar de ellas usa <span class="klass">PVector</span><code>s</code>.</p>
 </div>
 
 <div data-type="exercise" id="chapter01_exercise2">
-<h5>Exercise 1.2</h5>
+<h5>Ejercicio 1.2</h5>
 
-<p>Take one of the walker examples from the introduction and convert it to use <span class="klass">PVector</span><code>s</code>.</p>
+<p>Usa uno de los ejemplos de caminante de la introducción y conviértelo para que use <span class="klass">PVector</span><code>s</code>.</p>
 </div>
 
 <div data-type="exercise" id="chapter01_exercise3">
-<h5>Exercise 1.3</h5>
+<h5>Ejercicio 1.3</h5>
 
-<p>Extend the bouncing ball with vectors example into 3D. Can you get a sphere to bounce around a box?</p>
+<p>Extiende a 3D el ejemplo de la pelota que rebota con vectores. ¿Podrías hacer que la esfera rebote alrededor de una caja?</p>
 </div>
 </section>
 
