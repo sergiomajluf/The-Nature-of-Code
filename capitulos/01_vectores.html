@@ -42,11 +42,10 @@
 // Variables para ubicación y velocidad de la pelota.
 float x = 100;
 float y = 100;
-float xspeed = 1;
-float yspeed = 3.3;
+float xvelocidad = 1;
+float yvelocidad = 3.3;
 
-// {!4} Remember how Processing works?  setup() is executed once when the sketch starts and draw() loops forever and ever (until you quit).
-void setup() {
+// {!4} ¿Recuerdas cómo funciona Processing? El setup() es ejecutado una vez cuando el sketch comienza a correr, y el draw() se ejecuta en bucle por siempre (hasta que cierres la ventana) {
   size(640,360);
   background(255);
 }
@@ -54,83 +53,83 @@ void setup() {
 void draw() {
   background(255);
 
-  // Move the ball according to its speed.
-  x = x + xspeed;
-  y = y + yspeed;
+  // Mueve la pelota dependiendo de su velocidad.
+  x = x + xvelocidad;
+  y = y + yvelocidad;
 
-  // {!6} Check for bouncing.
+  // {!6} Revisa el rebote.
   if ((x &gt; width) || (x &lt; 0)) {
-    xspeed = xspeed * -1;
+    xvelocidad = xvelocidad * -1;
   }
   if ((y &gt; height) || (y &lt; 0)) {
-    yspeed = yspeed * -1;
+    yvelocidad = yvelocidad * -1;
   }
 
   stroke(0);
   fill(175);
-  // {!1} Display the ball at the location (x,y).
+  // {!1} Muestra la pelota en su ubicación (x,y).
   ellipse(x,y,16,16);
 }</pre>
 
-<p>In the above example, we have a very simple world—a blank canvas with a circular shape (a “ball”) traveling around. This ball has some properties, which are represented in the code as variables.</p>
+<p>En el ejemplo anterior, tenemos un mundo muy simple —un lienzo en blanco con una figura circular (una "pelota") moviéndose. Esta pelota tiene algunas propiedades, las cuales están representadas en el código como variables.</p>
 
 <div data-type="note">
 <dl>
-	<dt>Location</dt>
+	<dt>Ubicación</dt>
 	<dd>
-	<p><em>x and y</em></p>
+	<p><em>x e y</em></p>
 	</dd>
-	<dt>Speed</dt>
+	<dt>Velocidad</dt>
 	<dd>
-	<p><em>xspeed and yspeed</em></p>
+	<p><em>xvelocidad and yvelocidad</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>In a more advanced sketch, we could imagine having many more variables:</p>
+<p>En un sketch más avanzado, podríamos imaginarnos teniendo más variables:</p>
 
 <div data-type="note">
 <dl>
-	<dt>Acceleration</dt>
+	<dt>Aceleración</dt>
 	<dd>
-	<p><em>xacceleration and yacceleration</em></p>
+	<p><em>xaceleracion e yaceleracion</em></p>
 	</dd>
-	<dt>Target location</dt>
+	<dt>Ubicación del objetivo</dt>
 	<dd>
-	<p><em>xtarget and ytarget</em></p>
+	<p><em>xobjetivo e yobjetivo</em></p>
 	</dd>
-	<dt>Wind</dt>
+	<dt>Viento</dt>
 	<dd>
-	<p><em>xwind and ywind</em></p>
+	<p><em>xviento e yviento</em></p>
 	</dd>
-	<dt>Friction</dt>
+	<dt>Fricción</dt>
 	<dd>
-	<p><em>xfriction and yfriction</em></p>
+	<p><em>xfriccion e yfriccion</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>It’s becoming clearer that for every concept in this world (wind, location, acceleration, etc.), we’ll need two variables. And this is only a two-dimensional world. In a 3D world, we’ll need <span class="var">x</span>, <span class="var">y</span>, <span class="var">z</span>, <span class="var">xspeed</span>, <span class="var">yspeed</span>, <span class="var">zspeed</span>, and so on.</p>
+<p>Está quedando cada vez más claro, que para cada concepto en este mundo (viento, ubicación, aceleración, etc.), necesitaremos dos variables. Y esto es sólo un mundo bidimensional. En un mundo tridimensional, necesitaremos <span class="var">x</span>, <span class="var">y</span>, <span class="var">z</span>, <span class="var">xvelocidad</span>, <span class="var">yvelocidad</span>, <span class="var">zvelocidad</span>, etc.</p>
 
-<p>Wouldn’t it be nice if we could simplify our code and use fewer variables?</p>
+<p>¿No sería agradable poder simplificar nuestro códgio y usar menos variables?</p>
 
-<p>Instead of:</p>
+<p>En vez de:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 float x;
 float y;
-float xspeed;
-float yspeed;</pre>
+float xvelocidad;
+float yvelocidad;</pre>
 
-<p>We could simply have&hellip;</p>
+<p>Podríamos simplemente tener&hellip;</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-Vector location;
-Vector speed;</pre>
+Vector ubicacion;
+Vector velocidad;</pre>
 
-<p>Taking this first step in using vectors won’t allow us to do anything new. Just adding vectors won’t magically make your Processing sketches simulate physics. However, they will simplify your code and provide a set of functions for common mathematical operations that happen over and over and over again while programming motion.</p>
+<p>Dar este primer paso en el uso de vectores no nos permitirá hacer nada nuevo. Tan sólo añadiendo vectores no hará que mágicamente nuestro sketch de Processing simule la física. Sin embargo, ellos simplificarán tu código y te proporcionarán un conjunto de funciones para operaciones matemáticas comunes que suceden una y otra vez mientras programas el movimiento.</p>
 
-<p>As an introduction to vectors, we’re going to live in two dimensions for quite some time (at least until we get through the first several chapters). All of these examples can be fairly easily extended to three dimensions (and the class we will use—<span class="klass">PVector</span><code>—</code>allows for three dimensions.) However, it’s easier to start with just two.</p>
+<p>Como una introducción a los vectores, viviremos en dos dimensiones por un tiempo (al menos hasta que pasemos los primeros capítulos). Todos estos ejemplos pueden extenderse fácilmente a tres dimensiones (y la Clase que usaremos—<span class="klass">PVector</span><code>—</code>nos permite usar tres dimensiones.) Sin embargo, es más fácil empezar con solamente dos.</p>
 </section>
 
 <section data-type="sect1" id="chapter01_section2">
