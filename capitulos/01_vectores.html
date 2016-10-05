@@ -327,12 +327,12 @@ class PVector {
 
 <a data-primary="bouncing ball sketch" data-secondary="implementing with vectors" data-type="indexterm"></a>
 
-<p>Ahora que vemos cómo <span class="function">add()</span> está escrita dentro de <span class="klass">PVector</span>, podemos volver a nuestro ejemplo de la pelota que rebota con su algoritmo de <strong><em>localización + velocidad</em></strong> e implementarle una adición de vectores:</p>
+<p>Ahora que vemos cómo <span class="function">add()</span> está escrita dentro de <span class="klass">PVector</span>, podemos volver a nuestro ejemplo de la pelota que rebota con su algoritmo de <strong><em>ubicación + velocidad</em></strong> e implementarle una adición de vectores:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// {!1 .line-through}Suma la actual velocidad a su localización.
-localizacion = localizacion + velocidad;
-localizacion.add(velocidad);</pre>
+// {!1 .line-through}Suma la actual velocidad a su ubicación.
+ubicacion = ubicacion + velocidad;
+ubicacion.add(velocidad);</pre>
 
 <p>Y aquí estamos listos para reescribir el ejemplo de la pelota que rebota usando <span class="klass">PVector</span>.</p>
 
@@ -342,51 +342,51 @@ localizacion.add(velocidad);</pre>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 //{!2 .bold} En vez de muchos floats, ahora tenemos solo dos variables PVector.
-PVector localizacion;
+PVector ubicacion;
 PVector velocidad;
 
 void setup() {
   size(640,360);
   //{!2 .bold .no-comment}
-  localizacion = new PVector(100, 100);
+  ubicacion = new PVector(100, 100);
   velocidad = new PVector(2.5, 5);
 }
 
 void draw() {
   background(255);
   //{!1 .bold .no-comment}
-  localizacion.add(velocidad);
+  ubicacion.add(velocidad);
 
-  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido en inglés como "dot syntax": localizacion.x, velocidad.y, etc.
-  if ((localizacion.x &gt; width) || (localizacion.x &lt; 0)) {
+  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido en inglés como "dot syntax": ubicacion.x, velocidad.y, etc.
+  if ((ubicacion.x &gt; width) || (ubicacion.x &lt; 0)) {
     velocidad.x = velocidad.x * -1;
   }
-  if ((localizacion.y &gt; height) || (localizacion.y &lt; 0)) {
+  if ((ubicacion.y &gt; height) || (ubicacion.y &lt; 0)) {
     velocidad.y = velocidad.y * -1;
   }
 
   stroke(0);
   fill(175);
-  ellipse(localizacion.x, localizacion.y, 16, 16);
+  ellipse(ubicacion.x, ubicacion.y, 16, 16);
 }</pre>
 
 <p>Ahora, podrías sentirte un poco decepcionado. Después de todo, esto podría parecer que inicialmente hizo el código más complicado que la versión original. Aunque esta es una crítica perfectamente razonable, es importante entender que todavía no nos hemos dado cuenta realmente del poder de programar con vectores. Mirando una simple pelota que rebota e implementando la suma de vectores, es solo el primer paso. Mientras nos adentramos en un mundo mucho más complejo de múltiples objetos y múltiples <strong><em>fuerzas</em></strong> (las cuales introduciremos en el Capítulo 2), los beneficios de <span class="klass">PVector</span> se harán notar cada vez más.</p>
 
-<p>Sin embargo, debemos notar un aspecto importante de la transición a programar con vectores. Aunque estamos usando objetos <span class="klass">PVector</span> para describir los valores —la <span class="var">x</span> e <span class="var">y</span> de localización y la <span class="var">x</span> e <span class="var">y</span> de velocidad— todavía necesitaremos referirnos a los componentes <em>x</em> e <em>y</em> de cada <span class="klass">PVector</span> individualmente. Cuando vayamos a Processing para dibujar un objeto, no hay necesidad de decir:</p>
+<p>Sin embargo, debemos notar un aspecto importante de la transición a programar con vectores. Aunque estamos usando objetos <span class="klass">PVector</span> para describir los valores —la <span class="var">x</span> e <span class="var">y</span> de ubicación y la <span class="var">x</span> e <span class="var">y</span> de velocidad— todavía necesitaremos referirnos a los componentes <em>x</em> e <em>y</em> de cada <span class="klass">PVector</span> individualmente. Cuando vayamos a Processing para dibujar un objeto, no hay necesidad de decir:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 // {.line-through .no-comment}
-ellipse(localizacion, 16, 16);</pre>
+ellipse(ubicacion, 16, 16);</pre>
 
 <p>La función <span class="function">ellipse()</span> no permite usar un <span class="klass">PVector</span> como argumento. Una elipse puede ser dibujada sólo con dos valores escalar, una coordenada en <span class="var">x</span> y una coordenada en <span class="var">y</span>. Entonces debemos meternos dentro del objeto <span class="klass">PVector</span> y sacar los componentes <em>x</em> e <em>y</em> usando <em>dot syntax</em> orientada a objetos.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-ellipse(localizacion.x, localizacion.y, 16, 16);</pre>
+ellipse(ubicacion.x, ubicacion.y, 16, 16);</pre>
 
-<p>La misma cuestión surge cuando probamos si el círculo ha llegado al borde de la ventana, y debemos acceder a los componentes individuales de ambos vectores: <span class="var">localizacion</span> y <span class="var">velocidad</span>.</p>
+<p>La misma cuestión surge cuando probamos si el círculo ha llegado al borde de la ventana, y debemos acceder a los componentes individuales de ambos vectores: <span class="var">ubicacion</span> y <span class="var">velocidad</span>.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-if ((localizacion.x &gt; width) || (localizacion.x &lt; 0)) {
+if ((ubicacion.x &gt; width) || (ubicacion.x &lt; 0)) {
   velocidad.x = velocidad.x * -1;
 }</pre>
 
