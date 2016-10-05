@@ -356,7 +356,7 @@ void draw() {
   //{!1 .bold .no-comment}
   ubicacion.add(velocidad);
 
-  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido en inglés como "dot syntax": ubicacion.x, velocidad.y, etc.
+  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido como notación de punto: ubicacion.x, velocidad.y, etc.
   if ((ubicacion.x &gt; width) || (ubicacion.x &lt; 0)) {
     velocidad.x = velocidad.x * -1;
   }
@@ -377,7 +377,7 @@ void draw() {
 // {.line-through .no-comment}
 ellipse(ubicacion, 16, 16);</pre>
 
-<p>La función <span class="function">ellipse()</span> no permite usar un <span class="klass">PVector</span> como argumento. Una elipse puede ser dibujada sólo con dos valores escalar, una coordenada en <span class="var">x</span> y una coordenada en <span class="var">y</span>. Entonces debemos meternos dentro del objeto <span class="klass">PVector</span> y sacar los componentes <em>x</em> e <em>y</em> usando <em>dot syntax</em> orientada a objetos.</p>
+<p>La función <span class="function">ellipse()</span> no permite usar un <span class="klass">PVector</span> como argumento. Una elipse puede ser dibujada sólo con dos valores escalar, una coordenada en <span class="var">x</span> y una coordenada en <span class="var">y</span>. Entonces debemos meternos dentro del objeto <span class="klass">PVector</span> y sacar los componentes <em>x</em> e <em>y</em> usando la <em>notación de punto</em> orientada a objetos.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 ellipse(ubicacion.x, ubicacion.y, 16, 16);</pre>
