@@ -137,7 +137,7 @@ class Caminante {
     point(x,y);
   }</pre>
 
-<p>La segunda función dirige al objeto <span class="klass">Walker</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un píxel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un píxel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aletaoriamente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
+<p>La segunda función dirige al objeto <span class="klass">Caminante</span> para que de un paso. Ahora, aquí es donde las cosas se vuelven un poco más interesantes. ¿Recuerdas el piso en donde estábamos dando pasos aleatorios? Bueno, ahora podemos usar una ventana de Processing con esa misma capacidad. En donde hay cuatro posibles pasos. Un paso hacia la derecha puede ser simulado a través del increimente de <span class="var">x</span> (<span class="var">x</span><code>++</code>); hacia la izquierda con el decremento de <span class="var">x</span> (<span class="var">x--</span>); hacia adelante yendo un píxel hacia abajo (<span class="var">y++</span>); y hacia atrás yendo un píxel hacia arriba (<span class="var">y--</span>). ¿Cómo elegimos desde estas cuatro opciones? Previamente declaramos que podríamos lanzar dos monedas. En Processing, sin embargo, cuando queremos elegir aletaoriamente entre una lista de opciones, podemos elegir un número aleatorio usando <span class="function">random()</span>.</p>
 
 <a data-primary="random number generators" data-secondary="random() function" data-type="indexterm"></a> <a data-primary="random() function" data-type="indexterm"></a>
 
@@ -201,13 +201,13 @@ void draw() {
 <figcaption>&nbsp;</figcaption>
 </figure>
 
-<p>Hay una serie de mejoras que podemos hacer al caminante aleatorio. Por un lado, las alternativas de pasos que tiene el <span class="klass">Walker</span> están limitadas a cuatro opciones —arriba, abajo, izquierda, y derecha. Pero, cualquier píxel en la ventana tiene ocho posibles vecinos, y una novena posibilidad es quedarse en el mismo lugar.</p>
+<p>Hay una serie de mejoras que podemos hacer al caminante aleatorio. Por un lado, las alternativas de pasos que tiene el <span class="klass">Caminante</span> están limitadas a cuatro opciones —arriba, abajo, izquierda, y derecha. Pero, cualquier píxel en la ventana tiene ocho posibles vecinos, y una novena posibilidad es quedarse en el mismo lugar.</p>
 
 <figure id="intro_figure1"><img alt="Figure I.1" src="intro/intro_01.png" />
 <figcaption>Figura I.1</figcaption>
 </figure>
 
-<p>Para implementar un objeto <span class="klass">Walker</span> que pueda dar un paso hacia cualquier píxel vecino (o no moverse), podemos elegir un número entre 0 y 8 (nueve posibles alternativas). Sin embargo, una manera más eficiente de escribir el código sería simplemente elegir entre tres posibles pasos en el eje x (-1, 0, o 1) y tres posibles pasos en el eje y.</p>
+<p>Para implementar un objeto <span class="klass">Caminante</span> que pueda dar un paso hacia cualquier píxel vecino (o no moverse), podemos elegir un número entre 0 y 8 (nueve posibles alternativas). Sin embargo, una manera más eficiente de escribir el código sería simplemente elegir entre tres posibles pasos en el eje x (-1, 0, o 1) y tres posibles pasos en el eje y.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
   void paso() {
