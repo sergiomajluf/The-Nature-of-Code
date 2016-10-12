@@ -512,7 +512,7 @@ void draw() {
   background(255);
   //Dos PVectors, uno para la ubicación del mouse y uno para el centro de la ventana
   PVector mouse  = new PVector(mouseX, mouseY);
-  PVector center = new PVector(width/2, height/2);
+  PVector centro = new PVector(width/2, height/2);
 
   // ¡Substracción de PVector!
   mouse.sub(center);
@@ -585,7 +585,7 @@ void mult(float n) {
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 PVector u = new PVector(-3, 7);
-// Este PVectorahora es tres veces su tamaño y equivale a (-9,21).
+// Este PVector ahora es tres veces su tamaño y equivale a (-9,21).
 u.mult(3);</pre>
 
 <figure class="screenshot" data-pde="processingjs/chapter01/_1_4_vector_multiplication/_1_4_vector_multiplication.pde"><img alt="ch01 ex04" src="chapter01/ch01_ex04.png" />
@@ -603,7 +603,7 @@ void draw() {
   background(255);
 
   PVector mouse = new PVector(mouseX, mouseY);
-  PVector center = new PVector(width/2, height/2);
+  PVector centro = new PVector(width/2, height/2);
   mouse.sub(center);
   //{!1} ¡Multiplicando un vector! El vector ahora es la mitad de su tamaño original (multiplicado por 0.5).
   mouse.mult(0.5);
