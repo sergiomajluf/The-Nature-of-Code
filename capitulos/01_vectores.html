@@ -42,11 +42,10 @@
 // Variables para ubicación y velocidad de la pelota.
 float x = 100;
 float y = 100;
-float xspeed = 1;
-float yspeed = 3.3;
+float xvelocidad = 1;
+float yvelocidad = 3.3;
 
-// {!4} Remember how Processing works?  setup() is executed once when the sketch starts and draw() loops forever and ever (until you quit).
-void setup() {
+// {!4} ¿Recuerdas cómo funciona Processing? El setup() es ejecutado una vez cuando el sketch comienza a correr, y el draw() se ejecuta en bucle por siempre (hasta que cierres la ventana) {
   size(640,360);
   background(255);
 }
@@ -54,83 +53,83 @@ void setup() {
 void draw() {
   background(255);
 
-  // Move the ball according to its speed.
-  x = x + xspeed;
-  y = y + yspeed;
+  // Mueve la pelota dependiendo de su velocidad.
+  x = x + xvelocidad;
+  y = y + yvelocidad;
 
-  // {!6} Check for bouncing.
+  // {!6} Revisa el rebote.
   if ((x &gt; width) || (x &lt; 0)) {
-    xspeed = xspeed * -1;
+    xvelocidad = xvelocidad * -1;
   }
   if ((y &gt; height) || (y &lt; 0)) {
-    yspeed = yspeed * -1;
+    yvelocidad = yvelocidad * -1;
   }
 
   stroke(0);
   fill(175);
-  // {!1} Display the ball at the location (x,y).
+  // {!1} Muestra la pelota en su ubicación (x,y).
   ellipse(x,y,16,16);
 }</pre>
 
-<p>In the above example, we have a very simple world—a blank canvas with a circular shape (a “ball”) traveling around. This ball has some properties, which are represented in the code as variables.</p>
+<p>En el ejemplo anterior, tenemos un mundo muy simple —un lienzo en blanco con una figura circular (una "pelota") moviéndose. Esta pelota tiene algunas propiedades, las cuales están representadas en el código como variables.</p>
 
 <div data-type="note">
 <dl>
-	<dt>Location</dt>
+	<dt>Ubicación</dt>
 	<dd>
-	<p><em>x and y</em></p>
+	<p><em>x e y</em></p>
 	</dd>
-	<dt>Speed</dt>
+	<dt>Velocidad</dt>
 	<dd>
-	<p><em>xspeed and yspeed</em></p>
+	<p><em>xvelocidad and yvelocidad</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>In a more advanced sketch, we could imagine having many more variables:</p>
+<p>En un sketch más avanzado, podríamos imaginarnos teniendo más variables:</p>
 
 <div data-type="note">
 <dl>
-	<dt>Acceleration</dt>
+	<dt>Aceleración</dt>
 	<dd>
-	<p><em>xacceleration and yacceleration</em></p>
+	<p><em>xaceleracion e yaceleracion</em></p>
 	</dd>
-	<dt>Target location</dt>
+	<dt>Ubicación del objetivo</dt>
 	<dd>
-	<p><em>xtarget and ytarget</em></p>
+	<p><em>xobjetivo e yobjetivo</em></p>
 	</dd>
-	<dt>Wind</dt>
+	<dt>Viento</dt>
 	<dd>
-	<p><em>xwind and ywind</em></p>
+	<p><em>xviento e yviento</em></p>
 	</dd>
-	<dt>Friction</dt>
+	<dt>Fricción</dt>
 	<dd>
-	<p><em>xfriction and yfriction</em></p>
+	<p><em>xfriccion e yfriccion</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>It’s becoming clearer that for every concept in this world (wind, location, acceleration, etc.), we’ll need two variables. And this is only a two-dimensional world. In a 3D world, we’ll need <span class="var">x</span>, <span class="var">y</span>, <span class="var">z</span>, <span class="var">xspeed</span>, <span class="var">yspeed</span>, <span class="var">zspeed</span>, and so on.</p>
+<p>Está quedando cada vez más claro, que para cada concepto en este mundo (viento, ubicación, aceleración, etc.), necesitaremos dos variables. Y esto es sólo un mundo bidimensional. En un mundo tridimensional, necesitaremos <span class="var">x</span>, <span class="var">y</span>, <span class="var">z</span>, <span class="var">xvelocidad</span>, <span class="var">yvelocidad</span>, <span class="var">zvelocidad</span>, etc.</p>
 
-<p>Wouldn’t it be nice if we could simplify our code and use fewer variables?</p>
+<p>¿No sería agradable poder simplificar nuestro códgio y usar menos variables?</p>
 
-<p>Instead of:</p>
+<p>En vez de:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 float x;
 float y;
-float xspeed;
-float yspeed;</pre>
+float xvelocidad;
+float yvelocidad;</pre>
 
-<p>We could simply have&hellip;</p>
+<p>Podríamos simplemente tener&hellip;</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-Vector location;
-Vector speed;</pre>
+Vector ubicacion;
+Vector velocidad;</pre>
 
-<p>Taking this first step in using vectors won’t allow us to do anything new. Just adding vectors won’t magically make your Processing sketches simulate physics. However, they will simplify your code and provide a set of functions for common mathematical operations that happen over and over and over again while programming motion.</p>
+<p>Dar este primer paso en el uso de vectores no nos permitirá hacer nada nuevo. Tan sólo añadiendo vectores no hará que mágicamente nuestro sketch de Processing simule la física. Sin embargo, ellos simplificarán tu código y te proporcionarán un conjunto de funciones para operaciones matemáticas comunes que suceden una y otra vez mientras programas el movimiento.</p>
 
-<p>As an introduction to vectors, we’re going to live in two dimensions for quite some time (at least until we get through the first several chapters). All of these examples can be fairly easily extended to three dimensions (and the class we will use—<span class="klass">PVector</span><code>—</code>allows for three dimensions.) However, it’s easier to start with just two.</p>
+<p>Como una introducción a los vectores, viviremos en dos dimensiones por un tiempo (al menos hasta que pasemos los primeros capítulos). Todos estos ejemplos pueden extenderse fácilmente a tres dimensiones (y la Clase que usaremos—<span class="klass">PVector</span><code>—</code>nos permite usar tres dimensiones.) Sin embargo, es más fácil empezar con solamente dos.</p>
 </section>
 
 <section data-type="sect1" id="chapter01_section2">
@@ -250,62 +249,62 @@ location = location + velocity;</pre>
 </section>
 
 <section data-type="sect1" id="chapter01_section3">
-<h2>1.3 Vector Addition</h2>
+<h2>1.3 Adición de Vectores</h2>
 
 <a data-primary="add() function (PVector class)" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="adding" data-type="indexterm"></a>
 
-<p>Before we continue looking at the <span class="klass">PVector</span> class and its <span class="function">add()</span> method (purely for the sake of learning since it’s already implemented for us in Processing itself), let’s examine vector addition using the notation found in math and physics textbooks.</p>
+<p>Antes de que continuemos viendo la clase <span class="klass">PVector</span> y su método de <span class="function">add()</span> (puramente por el bien de aprender puesto que ya está implementado para nosotros en Processing), examinemos la adición de vectores usando una notación encontrada en libros de matemáticas y física.</p>
 
 <a data-primary="scalar notation" data-secondary="vs. vector notation" data-type="indexterm"></a> <a data-primary="vector notation" data-secondary="vs. scalar notation" data-type="indexterm"></a>
 
-<p>Vectors are typically written either in boldface type or with an arrow on top. For the purposes of this book, to distinguish a <strong><em>vector</em></strong> from a <strong><em>scalar</em></strong> (<em>scalar</em> refers to a single value, such as an integer or a floating point number), we’ll use the arrow notation:</p>
+<p>Los vectores están generalmente escritos en negrita o con una flecha por arriba. Para el propósito de este libro, para distinguir un <strong><em>vector</em></strong> de un <strong><em>escalar</em></strong> (un <em>escalar</em> se refiere a un único valor, ya sea un número entero o un número de punto flotante), usaremos la notación con la flecha:</p>
 
 <ul>
 	<li>
 	<p>Vector: $$\vec{v}$$</p>
 	</li>
 	<li>
-	<p>Scalar: {x}</p>
+	<p>Escalar: {x}</p>
 	</li>
 </ul>
 
-<p>Let’s say I have the following two vectors:</p>
+<p>Digamos que tenemos los dos siguientes vectores:</p>
 
 <figure id="chapter01_figure5"><img alt="Figure 1.5" src="chapter01/ch01_05.png" />
-<figcaption>Figure 1.5</figcaption>
+<figcaption>Figura 1.5</figcaption>
 </figure>
 
-<p>Each vector has two components, an <span class="var">x</span> and a <span class="var">y</span>. To add two vectors together, we simply add both <span class="var">x</span><code>’</code>s and both <span class="var">y</span><code>’</code>s.</p>
+<p>Cada vector tiene dos componentes, una en <span class="var">x</span> y una en <span class="var">y</span>. Para sumar dos vectores, simplemente tenemos que sumar ambas <span class="var">x</span><code>’</code>s y ambas <span class="var">y</span><code>’</code>s.</p>
 
 <figure id="chapter01_figure6"><img alt="Figure 1.6" src="chapter01/ch01_06.png" />
-<figcaption>Figure 1.6</figcaption>
+<figcaption>Figura 1.6</figcaption>
 </figure>
 
-<p>In other words:</p>
+<p>En otras palabras:</p>
 
 <p>{wuplusv}</p>
 
-<p>can be written as:</p>
+<p>puede ser escrito como:</p>
 
 <p>{wxuxplusvx}<br />
 {wyuyplusvy}</p>
 
-<p>Then, replacing <span class="var">u</span> and <span class="var">v</span> with their values from Figure 1.6, we get:</p>
+<p>Luego, reemplazando <span class="var">u</span> y <span class="var">v</span> con sus valores de la Figura 1.6, tenemos:</p>
 
 <p>{wx53}<br />
 {wy24}</p>
 
-<p>which means that:</p>
+<p>lo que significa que:</p>
 
 <p>{wx8} {wy6}</p>
 
-<p>Finally, we write that as a vector:</p>
+<p>Finalmente, escribimos que como vector:</p>
 
 <p>{w86}</p>
 
 <a data-primary="add() function (PVector class)" data-secondary="implementation of" data-type="indexterm"></a>
 
-<p>Now that we understand how to add two vectors together, we can look at how addition is implemented in the <span class="klass">PVector</span> class itself. Let’s write a function called <span class="function">add()</span> that takes another <span class="klass">PVector</span> object as its argument.</p>
+<p>Ahora que entendemos cómo sumar dos vectores, podemos ver cómo la adición es implementada en la clase <span class="klass">PVector</span> Escribamos una función llamada <span class="function">add()</span> que toma como argumento otro objeto <span class="klass">PVector</span>.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 class PVector {
@@ -318,7 +317,7 @@ class PVector {
     y = y_;
   }
 
-  // {!4 .bold} New! A function to add another PVector to this PVector.  Simply add the <em>x</em> components and the <em>y</em>; components together.
+  // {!4 .bold} Nuevo! Una función para sumar otro PVector a este PVector. Simplemente suma los componentes de <em>x</em> y los componentes de <em>y</em>;.
   void add(PVector v) {
     y = y + v.y;
     x = x + v.x;
@@ -327,168 +326,168 @@ class PVector {
 
 <a data-primary="bouncing ball sketch" data-secondary="implementing with vectors" data-type="indexterm"></a>
 
-<p>Now that we see how <span class="function">add()</span> is written inside of <span class="klass">PVector</span>, we can return to our bouncing ball example with its <strong><em>location + velocity</em></strong> algorithm and implement vector addition:</p>
+<p>Ahora que vemos cómo <span class="function">add()</span> está escrita dentro de <span class="klass">PVector</span>, podemos volver a nuestro ejemplo de la pelota saltarina con su algoritmo de <strong><em>ubicación + velocidad</em></strong> e implementarle una adición de vectores:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-// {!1 .line-through}Add the current velocity to the location.
-location = location + velocity;
-location.add(velocity);</pre>
+// {!1 .line-through}Suma la actual velocidad a su ubicación.
+ubicacion = ubicacion + velocidad;
+ubicacion.add(velocidad);</pre>
 
-<p>And here we are, ready to rewrite the bouncing ball example using <span class="klass">PVector</span>.</p>
+<p>Y aquí estamos listos para reescribir el ejemplo de la pelota saltarina usando <span class="klass">PVector</span>.</p>
 
 <a data-primary="dot syntax" data-type="indexterm"></a> <a data-primary="object-oriented programming" data-secondary="dot syntax" data-type="indexterm"></a>
 
-<div data-type="example"><h5>Example 1.2: Bouncing ball with PVectors!</h5></div>
+<div data-type="example"><h5>Ejemplo 1.2: Pelota saltarina con PVectors!</h5></div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-//{!2 .bold} Instead of a bunch of floats, we now just have two PVector variables.
-PVector location;
-PVector velocity;
+//{!2 .bold} En vez de muchos floats, ahora tenemos solo dos variables PVector.
+PVector ubicacion;
+PVector velocidad;
 
 void setup() {
   size(640,360);
   //{!2 .bold .no-comment}
-  location = new PVector(100, 100);
-  velocity = new PVector(2.5, 5);
+  ubicacion = new PVector(100, 100);
+  velocidad = new PVector(2.5, 5);
 }
 
 void draw() {
   background(255);
   //{!1 .bold .no-comment}
-  location.add(velocity);
+  ubicacion.add(velocidad);
 
-  //{!6 .bold} We still sometimes need to refer to the individual components of a PVector and can do so using the dot syntax: location.x, velocity.y, etc.
-  if ((location.x &gt; width) || (location.x &lt; 0)) {
-    velocity.x = velocity.x * -1;
+  //{!6 .bold} A veces, aún necesitaremos referirnos a los componentes individuales de un PVector. Para hacerlo se debe nombrar el objeto, seguido por un punto, y finalmente nombrar el componente al cual se quiere acceder; conocido como notación de punto: ubicacion.x, velocidad.y, etc.
+  if ((ubicacion.x &gt; width) || (ubicacion.x &lt; 0)) {
+    velocidad.x = velocidad.x * -1;
   }
-  if ((location.y &gt; height) || (location.y &lt; 0)) {
-    velocity.y = velocity.y * -1;
+  if ((ubicacion.y &gt; height) || (ubicacion.y &lt; 0)) {
+    velocidad.y = velocidad.y * -1;
   }
 
   stroke(0);
   fill(175);
-  ellipse(location.x, location.y, 16, 16);
+  ellipse(ubicacion.x, ubicacion.y, 16, 16);
 }</pre>
 
-<p>Now, you might feel somewhat disappointed. After all, this may initially appear to have made the code more complicated than the original version. While this is a perfectly reasonable and valid critique, it’s important to understand that we haven’t fully realized the power of programming with vectors just yet. Looking at a simple bouncing ball and only implementing vector addition is just the first step. As we move forward into a more complex world of multiple objects and multiple <strong><em>forces</em></strong> (which we’ll introduce in Chapter 2), the benefits of <span class="klass">PVector</span> will become more apparent.</p>
+<p>Ahora, podrías sentirte un poco decepcionado. Después de todo, esto podría parecer que inicialmente hizo el código más complicado que la versión original. Aunque esta es una crítica perfectamente razonable, es importante entender que todavía no nos hemos dado cuenta realmente del poder de programar con vectores. Mirando una simple pelota saltarina e implementando la suma de vectores, es solo el primer paso. Mientras nos adentramos en un mundo mucho más complejo de múltiples objetos y múltiples <strong><em>fuerzas</em></strong> (las cuales introduciremos en el Capítulo 2), los beneficios de <span class="klass">PVector</span> se harán notar cada vez más.</p>
 
-<p>We should, however, note an important aspect of the above transition to programming with vectors. Even though we are using <span class="klass">PVector</span> objects to describe two values—the <span class="var">x</span> and <span class="var">y</span> of location and the <span class="var">x</span> and <span class="var">y</span> of velocity—we still often need to refer to the <em>x</em> and <em>y</em> components of each <span class="klass">PVector</span> individually. When we go to draw an object in Processing, there’s no means for us to say:</p>
+<p>Sin embargo, debemos notar un aspecto importante de la transición a programar con vectores. Aunque estamos usando objetos <span class="klass">PVector</span> para describir los valores —la <span class="var">x</span> e <span class="var">y</span> de ubicación y la <span class="var">x</span> e <span class="var">y</span> de velocidad— todavía necesitaremos referirnos a los componentes <em>x</em> e <em>y</em> de cada <span class="klass">PVector</span> individualmente. Cuando vayamos a Processing para dibujar un objeto, no hay necesidad de decir:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 // {.line-through .no-comment}
-ellipse(location, 16, 16);</pre>
+ellipse(ubicacion, 16, 16);</pre>
 
-<p>The <span class="function">ellipse()</span> function does not allow for a <span class="klass">PVector</span> as an argument. An ellipse can only be drawn with two scalar values, an <span class="var">x</span>-coordinate and a <span class="var">y</span>-coordinate. And so we must dig into the <span class="klass">PVector</span> object and pull out the <em>x</em> and <em>y</em> components using object-oriented dot syntax.</p>
-
-<pre data-code-language="java" data-type="programlisting" class="codesplit">
-ellipse(location.x, location.y, 16, 16);</pre>
-
-<p>The same issue arises when testing if the circle has reached the edge of the window, and we need to access the individual components of both vectors: <span class="var">location</span> and <span class="var">velocity</span>.</p>
+<p>La función <span class="function">ellipse()</span> no permite usar un <span class="klass">PVector</span> como argumento. Una elipse puede ser dibujada sólo con dos valores escalar, una coordenada en <span class="var">x</span> y una coordenada en <span class="var">y</span>. Entonces debemos meternos dentro del objeto <span class="klass">PVector</span> y sacar los componentes <em>x</em> e <em>y</em> usando la <em>notación de punto</em> orientada a objetos.</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-if ((location.x &gt; width) || (location.x &lt; 0)) {
-  velocity.x = velocity.x * -1;
+ellipse(ubicacion.x, ubicacion.y, 16, 16);</pre>
+
+<p>La misma cuestión surge cuando probamos si el círculo ha llegado al borde de la ventana, y debemos acceder a los componentes individuales de ambos vectores: <span class="var">ubicacion</span> y <span class="var">velocidad</span>.</p>
+
+<pre data-code-language="java" data-type="programlisting" class="codesplit">
+if ((ubicacion.x &gt; width) || (ubicacion.x &lt; 0)) {
+  velocidad.x = velocidad.x * -1;
 }</pre>
 
 <div data-type="exercise" id="chapter01_exercise1">
-<h5>Exercise 1.1</h5>
+<h5>Ejercicio 1.1</h5>
 
-<p>Find something you’ve previously made in Processing using separate <span class="var">x</span> and <span class="var">y</span> variables and use <span class="klass">PVector</span><code>s</code> instead.</p>
+<p>Encuentra algo que hayas hecho previamente en Processing usando variables separadas de <span class="var">x</span> e <span class="var">y</span>, y en lugar de ellas usa <span class="klass">PVector</span><code>s</code>.</p>
 </div>
 
 <div data-type="exercise" id="chapter01_exercise2">
-<h5>Exercise 1.2</h5>
+<h5>Ejercicio 1.2</h5>
 
-<p>Take one of the walker examples from the introduction and convert it to use <span class="klass">PVector</span><code>s</code>.</p>
+<p>Usa uno de los ejemplos de Caminante de la introducción y conviértelo para que use <span class="klass">PVector</span><code>s</code>.</p>
 </div>
 
 <div data-type="exercise" id="chapter01_exercise3">
-<h5>Exercise 1.3</h5>
+<h5>Ejercicio 1.3</h5>
 
-<p>Extend the bouncing ball with vectors example into 3D. Can you get a sphere to bounce around a box?</p>
+<p>Extiende a 3D el ejemplo de la pelota saltarina con vectores. ¿Podrías hacer que la esfera rebote alrededor de una caja?</p>
 </div>
 </section>
 
 <section data-type="sect1" id="chapter01_section4">
-<h2>1.4 More Vector Math</h2>
+<h2>1.4 Más Matemática de Vectores</h2>
 
-<p>Addition was really just the first step. There are many mathematical operations that are commonly used with vectors. Below is a comprehensive list of the operations available as functions in the <span class="klass">PVector</span> class. We’ll go through a few of the key ones now. As our examples get more sophisticated in later chapters, we’ll continue to reveal the details of more functions.</p>
+<p>En realidad, la adición fue sólo el primer paso. Hay muchas operaciones matemáticas que son comúnmente usadas con vectores. Abajo, hay una lista exhaustiva de las operaciones disponibles como funciones en la Clase <span class="klass">PVector</span>. Repasaremos algunas de las más relevantes ahora. En cuanto nuestros ejemplos se hagan más sofisticados en los próximos capítulos, revelaremos los detalles de más funciones.</p>
 
 <a data-primary="PVector class (Processing)" data-secondary="mathematical functions for" data-type="indexterm"></a> <a data-primary="angleBetween() function (PVector class)" data-type="indexterm"></a> <a data-primary="cross() function (PVector class)" data-type="indexterm"></a> <a data-primary="dist() function (PVector class)" data-type="indexterm"></a> <a data-primary="dot() function (PVector class)" data-type="indexterm"></a> <a data-primary="heading() function (PVector class)" data-type="indexterm"></a> <a data-primary="lerp() function (PVector class)" data-type="indexterm"></a> <a data-primary="limit() function (PVector class)" data-type="indexterm"></a> <a data-primary="PVector class (Processing)" data-secondary="function list for" data-type="indexterm"></a> <a data-primary="random2D() function (PVector class)" data-type="indexterm"></a> <a data-primary="random3D() function (PVector class)" data-type="indexterm"></a> <a data-primary="rotate() function (PVector class)" data-type="indexterm"></a>
 
 <ul>
 	<li>
-	<p><span class="function">add()</span> — add vectors</p>
+	<p><span class="function">add()</span> — suma vectores</p>
 	</li>
 	<li>
-	<p><span class="function">sub()</span> — subtract vectors</p>
+	<p><span class="function">sub()</span> — resta vectores</p>
 	</li>
 	<li>
-	<p><span class="function">mult()</span> — scale the vector with multiplication</p>
+	<p><span class="function">mult()</span> — escala los vectores con multiplicación</p>
 	</li>
 	<li>
-	<p><span class="function">div()</span> — scale the vector with division</p>
+	<p><span class="function">div()</span> — escala los vectores con división</p>
 	</li>
 	<li>
-	<p><span class="function">mag()</span> — calculate the magnitude of a vector</p>
+	<p><span class="function">mag()</span> — calcula la magnitud de un vector</p>
 	</li>
 	<li>
-	<p><span class="function">setMag()</span> - set the magnitude of a vector</p>
+	<p><span class="function">setMag()</span> - define la magnitud de un vector</p>
 	</li>
 	<li>
-	<p><span class="function">normalize()</span> — normalize the vector to a unit length of 1</p>
+	<p><span class="function">normalize()</span> — normaliza el vector a una longitud de 1</p>
 	</li>
 	<li>
-	<p><span class="function">limit()</span> — limit the magnitude of a vector</p>
+	<p><span class="function">limit()</span> — limita la magnitud de un vector</p>
 	</li>
 	<li>
-	<p><span class="function">heading()</span> — the 2D heading of a vector expressed as an angle</p>
+	<p><span class="function">heading()</span> — el inicio de un vector 2D expresado como un ángulo</p>
 	</li>
 	<li>
-	<p><span class="function">rotate()</span> — rotate a 2D vector by an angle</p>
+	<p><span class="function">rotate()</span> — rota un vector 2D por un ángulo</p>
 	</li>
 	<li>
-	<p><span class="function">lerp()</span> — linear interpolate to another vector</p>
+	<p><span class="function">lerp()</span> — interpolar linealmente a otro vector</p>
 	</li>
 	<li>
-	<p><span class="function">dist()</span> — the Euclidean distance between two vectors (considered as points)</p>
+	<p><span class="function">dist()</span> — distancia Euclidiana entre dos vectores (considerados como puntos)</p>
 	</li>
 	<li>
-	<p><span class="function">angleBetween()</span> — find the angle between two vectors</p>
+	<p><span class="function">angleBetween()</span> — encuentra el ángulo entre dos vectores</p>
 	</li>
 	<li>
-	<p><span class="function">dot()</span> — the dot product of two vectors</p>
+	<p><span class="function">dot()</span> — la multiplicación escalar de dos vectores</p>
 	</li>
 	<li>
-	<p><span class="function">cross()</span> — the cross product of two vectors (only relevant in three dimensions)</p>
+	<p><span class="function">cross()</span> — la multiplicación cruzada de dos vectores (solamente relevante en tres dimensiones)</p>
 	</li>
 	<li>
-	<p><span class="function">random2D()</span> - make a random 2D vector</p>
+	<p><span class="function">random2D()</span> - crea un vector 2D random</p>
 	</li>
 	<li>
-	<p><span class="function">random3D()</span> - make a random 3D vector</p>
+	<p><span class="function">random3D()</span> - crea un vector 3D random</p>
 	</li>
 </ul>
 
-<p>Having already covered addition, let’s start with subtraction. This one’s not so bad; just take the plus sign and replace it with a minus!</p>
+<p>Teniendo cubierta la adición, empecemos con la substracción. Esta no es tan difícil; ¡simplemente toma el signo más y reemplázalo por un menos!</p>
 
 <section data-type="sect2" id="_vector_subtraction">
-<h2>Vector subtraction</h2>
+<h2>Substracción de vectores</h2>
 
 <a data-primary="PVector class (Processing)" data-secondary="sub() function" data-type="indexterm"></a> <a data-primary="sub() function (PVector class)" data-type="indexterm"></a>
 
 <p>{wuminusv}</p>
 
-<p>can be written as:</p>
+<p>puede escribirse como:</p>
 
 <p>{wxuxminusvx}<br />
 {wyuyminusvy}</p>
 
 <figure id="chapter01_figure7"><img alt="Figure 1.7: Vector Subtraction" src="chapter01/ch01_07.png" />
-<figcaption>Figure 1.7: Vector Subtraction&nbsp;</figcaption>
+<figcaption>Figura 1.7: Substracción de Vectores&nbsp;</figcaption>
 </figure>
 
-<p>and so the function inside <span class="klass">PVector</span> looks like:</p>
+<p>entonces la función dentro de <span class="klass">PVector</span> se ve así:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
   void sub(PVector v) {
@@ -496,13 +495,13 @@ if ((location.x &gt; width) || (location.x &lt; 0)) {
     y = y - v.y;
   }</pre>
 
-<p>The following example demonstrates vector subtraction by taking the difference between two points—the mouse location and the center of the window.</p>
+<p>El siguiente ejemplo demuestra la substracción de vectores tomando la diferencia entre dos puntos—a ubicación del mouse y el centro de la ventana.</p>
 
 <figure class="screenshot" data-pde="processingjs/chapter01/_1_3_vector_subtraction/_1_3_vector_subtraction.pde"><img alt="ch01 ex03" src="chapter01/ch01_ex03.png" />
 <figcaption>&nbsp;</figcaption>
 </figure>
 
-<div data-type="example"><h5>Example 1.3: Vector subtraction</h5></div>
+<div data-type="example"><h5>Ejemplo 1.3: Substracción de Vectores</h5></div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void setup() {
@@ -511,14 +510,14 @@ void setup() {
 
 void draw() {
   background(255);
-  //Two PVectors, one for the mouse location and one for the center of the window
+  //Dos PVectors, uno para la ubicación del mouse y uno para el centro de la ventana
   PVector mouse  = new PVector(mouseX, mouseY);
-  PVector center = new PVector(width/2, height/2);
+  PVector centro = new PVector(width/2, height/2);
 
-  // PVector subtraction!
+  // ¡Substracción de PVector!
   mouse.sub(center);
 
-  //{!2} Draw a line to represent the vector.
+  //{!2} Dibuja una línea para representar el vector.
   translate(width/2, height/2);
   line(0, 0, mouse.x, mouse.y);
 }</pre>
@@ -526,14 +525,14 @@ void draw() {
 <a data-primary="vectors" data-secondary="commutative/associative rules of addition/subtraction with" data-type="indexterm"></a>
 
 <div data-type="note">
-<h2>Basic Number Properties with Vectors</h2>
+<h2>Propiedades Numéricas Básicas con Vectores</h2>
 
-<p>Addition with vectors follow the same algebraic rules as with real numbers.</p>
+<p>La adición con vectores sigue las mismas leyes algebraicas que los números reales.</p>
 
-<p><strong><em>The commutative rule:</em></strong> {uplusvvplusu}<br />
-<strong><em>The associative rule:</em></strong> {uplusvwuvplusw}</p>
+<p><strong><em>La ley conmutativa:</em></strong> {uplusvvplusu}<br />
+<strong><em>La ley asociativa:</em></strong> {uplusvwuvplusw}</p>
 
-<p>Fancy terminology and symbols aside, this is really quite a simple concept. We’re just saying that common sense properties of addition apply to vectors as well.</p>
+<p>Dejando de lado la terminología y los símbolos elegantes, este es un concepto realmente simple. Solamente estamos diciendo que las propiedades de sentido común de la adición se les aplican a los vectores.</p>
 
 <p>{3plus2}<br />
 {3plus2plus1}</p>
@@ -541,26 +540,26 @@ void draw() {
 </section>
 
 <section data-type="sect2" id="_vector_multiplication">
-<h2>Vector multiplication</h2>
+<h2>Multiplicación de vectores</h2>
 
 <a data-primary="mult() function (PVector class)" data-type="indexterm"></a> <a data-primary="PVector class (Processing)" data-secondary="mult() function" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="multiplying" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="scaling" data-type="indexterm"></a>
 
-<p>Moving on to multiplication, we have to think a little bit differently. When we talk about multiplying a vector, what we typically mean is <strong><em>scaling</em></strong> a vector. If we wanted to scale a vector to twice its size or one-third of its size (leaving its direction the same), we would say: “Multiply the vector by 2” or “Multiply the vector by 1/3.” Note that we are multiplying a vector by a scalar, a single number, not another vector.</p>
+<p>Tenemos que pensar de una manera un poco distinta para seguir con la multiplicación. Cuando hablamos de multiplicar un vector, lo que típicamente intencionamos es <strong><em>scaling</em></strong> un vector. Si quisiéramos escalar un vector al doble de su tamaño ó a un tercio de su tamaño (dejando su dirección igual), diríamos: "Multiplica el vector por 2" ó "Multiplica el vector por 1/3." Nota que estamos multiplicando un vector por un escalar, un único número, no por otro vector.</p>
 
-<p>To scale a vector, we multiply each component (<span class="var">x</span> and <span class="var">y</span>) by a scalar.</p>
+<p>Para escalar un vector, multiplicamos cada componente (<span class="var">x</span> e <span class="var">y</span>) por un escalar.</p>
 
 <figure class="half-width-right" id="chapter01_figure8"><img alt="Figure 1.8: Scaling a vector" src="chapter01/ch01_08.png" />
-<figcaption>Figure 1.8: Scaling a vector&nbsp;</figcaption>
+<figcaption>Figura 1.8: Escalando un vector&nbsp;</figcaption>
 </figure>
 
 <p>{wutimesn}</p>
 
-<p>can be written as:</p>
+<p>puede escribirse como:</p>
 
 <p>{wxtimesn}<br />
 {wytimesn}</p>
 
-<p>Let’s look at an example with vector notation.</p>
+<p>Veamos un ejemplo con notación de vector.</p>
 
 <p>{uequals}<br />
 {nequals}</p>
@@ -571,29 +570,29 @@ void draw() {
 
 <p>{wequals}</p>
 
-<p>Therefore, the function inside the <span class="klass">PVector</span> class is written as:</p>
+<p>Por lo tanto, la función dentro de la Clase <span class="klass">PVector</span> está escrita como:</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void mult(float n) {
-   //{!2} With multiplication, the components of the vector are multiplied by a number.
+   //{!2} Con la multiplicación, los componentes de un vector están multiplicados por un número.
    x = x * n;
    y = y * n;
  }</pre>
 
-<p>And implementing multiplication in code is as simple as:</p>
+<p>E implementar la multiplicación en el código es tan simple como:</p>
 
 <a data-primary="mult() function (PVector class)" data-secondary="implementation" data-type="indexterm"></a>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 PVector u = new PVector(-3, 7);
-// This PVector is now three times the size and is equal to (-9,21).
+// Este PVector ahora es tres veces su tamaño y equivale a (-9,21).
 u.mult(3);</pre>
 
 <figure class="screenshot" data-pde="processingjs/chapter01/_1_4_vector_multiplication/_1_4_vector_multiplication.pde"><img alt="ch01 ex04" src="chapter01/ch01_ex04.png" />
 <figcaption>&nbsp;</figcaption>
 </figure>
 
-<div data-type="example"><h5>Example 1.4: Multiplying a vector</h5></div>
+<div data-type="example"><h5>Ejemplo 1.4: Multiplicando un vector</h5></div>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void setup() {
@@ -604,9 +603,9 @@ void draw() {
   background(255);
 
   PVector mouse = new PVector(mouseX, mouseY);
-  PVector center = new PVector(width/2, height/2);
+  PVector centro = new PVector(width/2, height/2);
   mouse.sub(center);
-  //{!1} Multiplying a vector!  The vector is now half its original size (multiplied by 0.5).
+  //{!1} ¡Multiplicando un vector! El vector ahora es la mitad de su tamaño original (multiplicado por 0.5).
   mouse.mult(0.5);
   translate(width/2, height/2);
   line(0, 0, mouse.x, mouse.y);
@@ -614,12 +613,12 @@ void draw() {
 }</pre>
 
 <figure class="half-width-right" id="chapter01_figure9"><img alt="Figure 1.9" src="chapter01/ch01_09.png" />
-<figcaption>Figure 1.9</figcaption>
+<figcaption>Figura 1.9</figcaption>
 </figure>
 
 <a data-primary="div() function (PVector class)" data-type="indexterm"></a> <a data-primary="PVector class (Processing)" data-secondary="div() function" data-type="indexterm"></a>
 
-<p>Division works just like multiplication—we simply replace the multiplication sign (asterisk) with the division sign (forward slash).</p>
+<p>La división funciona igual que la multiplicación—simplemente reemplazamos el signo de multiplicación (asterisco) por un signo de división (barra inclinada hacia la derecha).</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 void div(float n) {
@@ -628,19 +627,19 @@ void div(float n) {
 }
 
 PVector u = new PVector(8, -4);
-// Dividing a vector!  The vector is now half its original size (divided by 2).
+// ¡Dividiendo un vector! El vector ahora es la mitad de su tamaño original (dividido por 2).
 u.div(2);</pre>
 
 <a data-primary="vectors" data-secondary="associative/distributive rules for multiplication/division of" data-type="indexterm"></a>
 
 <div data-type="note">
-<h2>More Number Properties with Vectors</h2>
+<h2>Más Propiedades de Números con Vectores</h2>
 
-<p>As with addition, basic algebraic rules of multiplication apply to vectors.</p>
+<p>Como sucede con la adición, las leyes algebraicas básicas de la multiplicación se aplican a los vectores.</p>
 
-<p>The associative rule: {nmtimesv1}<br />
-The distributive rule with 2 scalars, 1 vector: {nmtimesv2}<br />
-The distributive rule with 2 vectors, 1 scalar: {uvtimesn}</p>
+<p>La ley asociativa: {nmtimesv1}<br />
+La ley distributiva con 2 escalar, 1 vector: {nmtimesv2}<br />
+La ley distributiva con 2 vectores, 1 escalar: {uvtimesn}</p>
 </div>
 </section>
 </section>
