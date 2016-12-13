@@ -1,0 +1,56 @@
+### 1.6 La Normalizando de los Vectores
+
+Calcular al magnitud de un vector es solo el comienzo. La función magnitud abre la puerta a muchas posibilidades, la primera es la normalización. La normalización se refiere al proceso de hacer algo "estándar", o bien "normal." En el caso de los vectores, supongamos por un momento que un vector estándar tiene una longitud de 1. Para normalizar un vector, por lo tanto, hay que tomar un vector de cualquier longitud y, manteniendo la dirección de este, cambiar su longitud a 1, convirtiéndolo en lo que se llama un vector unitario o versor.
+
+fig1.12
+
+Ya que describe la dirección del vector sin tomar en cuenta su longitud, es bastante útil tener el vector unitario al alcance. Veremos como esto es útil cuando comencemos a trabajar con fuerzas en el capítulo 2.
+
+Para cada vector U->, su vector unitario (escrito como U^) es calculado de la manera siguiente:
+
+En otras palabras, para normalizar un vector, simplemente divide cada componente por su magnitud. Esto es bastante intuitivo. Digamos que la longitud del vector es 5. Entonces, 5 dividido por 5 es 1. Mirando a nuestro triángulo rectángulo, cuando tengamos que escalar la hipotenusa la dividiremos por 5. En este proceso los lados se encojen, divididos por 5 también.
+
+En la Clase PVector, escribimos nuestras funciones de normalización como lo siguiente:
+
+```java
+void normalizar() {
+  float m = mag();
+  div(m);
+}
+```
+
+
+
+Por supuesto, hay un pequeño inconveniente. ¿Qué pasa si la magnitud del vector es 0? No podemos dividir por 0! Un rápido corrector de errores solucionara esto:
+
+Ejemplo 1.6: Normalizando un vector
+
+ 
+
+```java
+void normalizar() {
+ float m = mag();
+ if (m != 0) {
+   div(m);
+ }
+}
+```
+
+
+
+```java
+void draw() {
+  background(255);
+ 
+  PVector mouse = new PVector(mouseX,mouseY);
+  PVector center = new PVector(width/2,height/2);
+  mouse.sub(center);
+ 
+//En este ejemplo, luego de que el vector es normalizado, es multiplicado por 50 para que sea visible en la pantalla. Notemos como sin importanr donde este el mouse, el vector tendra la misma longitud (50) debido a su proceso de normalización.
+  mouse.normalize();
+  mouse.mult(50);
+  translate(width/2,height/2);
+  line(0,0,mouse.x,mouse.y);
+ 
+}
+```
