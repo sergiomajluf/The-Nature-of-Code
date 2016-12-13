@@ -1,0 +1,5 @@
+## Intro 
+
+"No subestimes la Fuerza" - Darth Vader
+
+Al final del capítulo 1, vimos como se podía calcular aceleración dinámica en bse a un vector apuntando desde un circulo en la pantalla a la ubicación del mouse. El movimiento resultante asemeja una atracción magnética entre el círculo y el mouse, como si algún tipo de fuerza estuviera tirando el círculo en dirección a el mouse. En este capítulo vamos a formalizar nuestra comprensión del concepto de fuerza y su relación con la aceleración. Nuestro objetivo, al finlaizar este capítulo, es entender como hacer que multiples objetos se muevan alrededor de la pantalla y responda a una variedad de fuerzas en su entorno. 
