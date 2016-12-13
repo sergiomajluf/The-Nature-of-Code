@@ -133,71 +133,71 @@ Vector velocidad;</pre>
 </section>
 
 <section data-type="sect1" id="chapter01_section2">
-<h2>1.2 Vectors for Processing Programmers</h2>
+<h2>1.2 Vectores para programadores de processing</h2>
 
 <a data-primary="Processing" data-secondary="vectors and" data-type="indexterm"></a> <a data-primary="PVector class (Processing)" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="Processing and" data-type="indexterm"></a>
 
-<p>One way to think of a vector is the difference between two points. Consider how you might go about providing instructions to walk from one point to another.</p>
+<p>Una manera de ver a los vectores es como la diferencia entre dos puntos. Considerando como podrías dar instrucciones para caminar de un punto a otro.</p>
 
-<p>Here are some vectors and possible translations:</p>
+<p>Aquí hay algunos vectores y posible traslaciones:</p>
 
 <figure id="chapter01_figure2"><img alt="Figure 1.2" src="chapter01/ch01_02.png" />
-<figcaption>Figure 1.2</figcaption>
+<figcaption>Figura 1.2</figcaption>
 </figure>
 
 <div data-type="note">
 <dl>
 	<dt>(-15, 3)</dt>
 	<dd>
-	<p><em>Walk fifteen steps west; turn and walk three steps north.</em></p>
+	<p><em>Avanza quince pasos al oeste; gira y avanza tres pasos al norte.</em></p>
 	</dd>
 	<dt>(3, 4)</dt>
 	<dd>
-	<p><em>Walk three steps east; turn and walk four steps north.</em></p>
+	<p><em>Avanza tres pasos al este; gira y avanza cinco pasos al norte.</em></p>
 	</dd>
 	<dt>(2, -1)</dt>
 	<dd>
-	<p><em>Walk two steps east; turn and walk one step south.</em></p>
+	<p><em>Avanza dos pasos al este; gira y avanza un paso al sur.</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>You’ve probably done this before when programming motion. For every frame of animation (i.e. a single cycle through Processing’s <span class="function">draw()</span> loop), you instruct each object on the screen to move a certain number of pixels horizontally and a certain number of pixels vertically.</p>
+<p>Probablemente haz hecho algo similar al programar movimiento. Por cada cuadro de animación(P.ej un único ciclo de bucle del<span class="function">draw()</span> de processing), tu instruyes cada objeto en a pantalla para mover cierto numero de pixeles horizonta y verticalmente.</p>
 
 <figure id="chapter01_figure3"><img alt="Figure 1.3" src="chapter01/ch01_03.png" />
-<figcaption>Figure 1.3</figcaption>
+<figcaption>Figura 1.3</figcaption>
 </figure>
 
-<p>For every frame:</p>
+<p>Por cada cuadro:</p>
 
-<p><strong><em>new location = velocity applied to current location</em></strong></p>
+<p><strong><em>nueva ubicación = velocidad aplicada a la ubicación actual</em></strong></p>
 
 <a data-primary="locations" data-secondary="as vectors" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="locations and" data-type="indexterm"></a> <a data-primary="vectors" data-secondary="velocity and" data-type="indexterm"></a> <a data-primary="velocity" data-secondary="as vector" data-type="indexterm"></a>
 
-<p>If velocity is a vector (the difference between two points), what is location? Is it a vector too? Technically, one might argue that location is not a vector, since it’s not describing how to move from one point to another—it’s simply describing a singular point in space.</p>
+<p>Si velocidad es un vector (la diferencia entredos puntos), entonces qué es ubicación? Y qué es un vector?Tecnicamente,uno podría discutir que la localización no es un vector, ya que no esta describiendo como moverse de un punto a otro - esta describiendo un único punto en el espacio.</p>
 
-<p>Nevertheless, another way to describe a location is the path taken from the origin to reach that location. Hence, a location can be the vector representing the difference between location and origin.</p>
+<p>Sin embargo, otra forma de describir una ubicación, es el camino desde el origen hasta llegar a esa ubicación. Por lo tanto, una ubicaciónpuede ser el vector representando la diferencia entre ubicación y origen. </p>
 
 <figure id="chapter01_figure4"><img alt="Figure 1.4" src="chapter01/ch01_04.png" />
-<figcaption>Figure 1.4</figcaption>
+<figcaption>Figura 1.4</figcaption>
 </figure>
 
-<p>Let’s examine the underlying data for both location and velocity. In the bouncing ball example, we had the following:</p>
+<p>Examinemos datos subyacentes para ambas, ubicación y velocidad. En el ejemplo de la pelota que rebota teníamos los siguiente:</p>
 
 <div data-type="note">
 <dl>
-	<dt>location</dt>
+	<dt>Ubicación</dt>
 	<dd>
 	<p><em>x,y</em></p>
 	</dd>
-	<dt>velocity</dt>
+	<dt>Velocidad</dt>
 	<dd>
-	<p><em>xspeed,yspeed</em></p>
+	<p><em>xvelocidad,yvelocidad</em></p>
 	</dd>
 </dl>
 </div>
 
-<p>Notice how we are storing the same data for both—two floating point numbers, an <span class="var">x</span> and a <span class="var">y</span>. If we were to write a vector class ourselves, we’d start with something rather basic:</p>
+<p>Notemos como estamos almacenando la misma información para ambas- dos números de punto flotante, ambas <span class="var">x</span> e <span class="var">y</span>. Si fuéramos a escribir una clase vector, comenzaríamos con algo bastante básico: </p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 class PVector {
@@ -212,21 +212,21 @@ class PVector {
 
 }</pre>
 
-<p>At its core, a <span class="klass">PVector</span> is just a convenient way to store two values (or three, as we’ll see in 3D examples).</p>
+<p>En su esencia, un <span class="klass">PVector</span> es solo una manera conveniente de almacenar dos valores (o tres, como se puede ver en ejemplos 3D).</p>
 
-<p>And so this &hellip;</p>
+<p>Y así esto &hellip;</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
 float x = 100;
 float y = 100;
-float xspeed = 1;
-float yspeed = 3.3;</pre>
+float xvelocidad = 1;
+float yvelocidad = 3.3;</pre>
 
-<p>becomes &hellip;</p>
+<p>Se transforma en esto &hellip;</p>
 
 <pre data-code-language="java" data-type="programlisting" class="codesplit">
-PVector location = new PVector(100,100);
-PVector velocity = new PVector(1,3.3);</pre>
+PVector ubicación= new PVector(100,100);
+PVector velocidad = new PVector(1,3.3);</pre>
 
 <a data-primary="vectors" data-secondary="motion" data-tertiary="implementing with" data-type="indexterm"></a>
 
