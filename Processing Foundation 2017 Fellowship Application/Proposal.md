@@ -34,7 +34,7 @@ Development document must include: 1) process of developing project, 2) timeline
 
 ------
 
-Your answer
+timeline: enero y febrero creación de la red de contribuidores. desde marzo en adelante, traducción 
 
 
 
