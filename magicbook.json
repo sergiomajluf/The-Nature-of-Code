@@ -2,7 +2,7 @@
    "title":"The Nature of Code",
    "destination":"build/:build",
    "files":[
-      "chapters/test.html"
+      "capitulos/Introhtml.html"
    ],
    "addPlugins":["magicbook-codesplit"],
    "builds":[
