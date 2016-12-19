@@ -10,3 +10,15 @@ Finalmente el resultado esperado con la traducción del libro, además de la tra
 
 
 
+------
+
+
+
+Durante todo 2016 el equipo de trabajo ha ejecutado un flujo de trabajo que consiste en replicar el repositorio del libro existente en GitHub, añadir un lugar para la documentación de exploraciones desde el aprendizaje, y usar el método de trabajo colaborativo que tiene ese servicio web. El proceso ha tenido también reuniones formales en algunas ocaciones dentro de las dependencias de la Universidad del Desarrollo, lugar en donde nació la idea del proyecto. Una vez que se genere la red de traductores y revisadores a lo largo de latinoamerica se cuenta con la universidad para gestionar workshop o master classes dedicadas específicamente a la comunicación del lengauage de Processing.
+
+Las siguientes etapas en el proyecto son:
+
+1. Enero - Febrero: Presentación del proyecto en universidades de latinoamerica para construir una red de traductores (estudiantes) y revisores (profesores)
+2. Marzo: Traducción de capítulos 2 - 4
+3. Abril: Traducción de capítulos 5 - 7
+4. Mayo: Traducción de capítulos 8 - 10
