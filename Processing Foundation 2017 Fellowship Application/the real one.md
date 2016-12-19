@@ -5,3 +5,8 @@ Es ahí en donde vi un problema, el rico y complejo contenido está disponible s
 Durante el año 2016 comenzamos a traducir el libro en una estructura de trabajo construida por dos alumas, vice decano, y yo; quienes en conjunto trabajamos remotamente a través de un repositorio en GitHub, en donde se suben capítulos traducidos para ser revisados y aceptados por mi, dudas con respecto al código y lo más importante y el objetivo principal de esta postulación, generar una traducción del inglés a un español neutro que pueda ser entendido por toda latinoamérica. 
 
 Para asegurar que la traducción sea en un español latinoamerica neutro, se trabajará con la red de contacto de universidades que tiene la univerdidad del desarrollo, además de la comunidad de Processing, asegurando un número mayor de traductores y revisadores, los traductores se espera ques ean alunnos de pregrado o postgrado; y los revisores sean profesores de lengua y/o programación.
+
+Finalmente el resultado esperado con la traducción del libro, además de la traducción en si, es construir una red de profesores y alumnos que puedan traducir a un español latinoamericano neutro, toda la referencia existente y por ser creatada, de Processing en cualquier formato que exista, web, pdf, libro, video.
+
+
+
